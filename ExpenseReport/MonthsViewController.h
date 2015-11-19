@@ -1,15 +1,15 @@
 //
 //  MonthsViewController.h
-//  ExpenseReport
+//  BudgetHelperApplication
 //
-//  Created by Group10 on 11/18/15.
+//  Created by Ricardo Cantu on 11/19/15.
 //  Copyright © 2015 UHD. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface MonthsViewController : UITableViewController
+@interface MonthsViewController : UIViewController
 
-
+@property(nonatomic)int monthSelected;
 
 @end

@@ -1,8 +1,8 @@
 //
 //  MonthsViewController.m
-//  ExpenseReport
+//  BudgetHelperApplication
 //
-//  Created by Group10 on 11/18/15.
+//  Created by Ricardo Cantu on 11/19/15.
 //  Copyright © 2015 UHD. All rights reserved.
 //
 
@@ -10,18 +10,20 @@
 
 @interface MonthsViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *monthNameLabel;
+@property (weak, nonatomic) IBOutlet UIView *latestIncomeView;
+@property (weak, nonatomic) IBOutlet UIView *latestExpenseView;
+@property (weak, nonatomic) IBOutlet UILabel *balanceForMonthLabel;
+
 @end
 
 @implementation MonthsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self setMonthNameLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,76 +31,47 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)setMonthNameLabel {
     
+    switch (self.monthSelected) {
+        case 2:
+            self.monthNameLabel.text = @"February";
+            break;
+        case 3:
+            self.monthNameLabel.text = @"March";
+            break;
+        case 4:
+            self.monthNameLabel.text = @"April";
+            break;
+        case 5:
+            self.monthNameLabel.text = @"May";
+            break;
+        case 6:
+            self.monthNameLabel.text = @"June";
+            break;
+        case 7:
+            self.monthNameLabel.text = @"July";
+            break;
+        case 8:
+            self.monthNameLabel.text = @"August";
+            break;
+        case 9:
+            self.monthNameLabel.text = @"September";
+            break;
+        case 10:
+            self.monthNameLabel.text = @"October";
+            break;
+        case 11:
+            self.monthNameLabel.text = @"November";
+            break;
+        case 12:
+            self.monthNameLabel.text = @"December";
+            break;
+        default:
+            self.monthNameLabel.text = @"January";
+            break;
+    }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
