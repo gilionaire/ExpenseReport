@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MonthsViewController">
             <connections>
                 <outlet property="balanceForMonthLabel" destination="Bab-dL-dh6" id="cE1-mS-Ww0"/>
-                <outlet property="monthNameLabel" destination="g1p-BS-OTn" id="Yi2-S3-XqJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,13 +22,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1p-BS-OTn">
-                    <rect key="frame" x="8" y="8" width="398" height="25.5"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDA-6r-rSB">
                     <rect key="frame" x="8" y="318" width="398" height="21"/>
                     <animations/>
@@ -41,20 +32,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance For Year:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQx-lV-bzZ">
-                    <rect key="frame" x="8" y="672" width="398" height="20.5"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$ 0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eom-pG-SnS">
-                    <rect key="frame" x="8" y="700" width="398" height="27.5"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance For Month:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0H-Lf-NY8">
                     <rect key="frame" x="8" y="598" width="398" height="20.5"/>
                     <animations/>
@@ -62,7 +39,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="$ 0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-dL-dh6">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="$ 0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bab-dL-dh6">
                     <rect key="frame" x="8" y="626.5" width="398" height="37.5"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
@@ -90,33 +67,22 @@
             <constraints>
                 <constraint firstItem="X9t-9I-Avw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="02n-xM-Ael"/>
                 <constraint firstItem="Bab-dL-dh6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="0bG-LM-DpD"/>
-                <constraint firstItem="PQx-lV-bzZ" firstAttribute="top" secondItem="Bab-dL-dh6" secondAttribute="bottom" constant="8" id="1Al-P1-lsR"/>
                 <constraint firstItem="X9t-9I-Avw" firstAttribute="top" secondItem="yi8-oL-fnP" secondAttribute="bottom" constant="1" id="BNX-XR-Hcn"/>
-                <constraint firstItem="eom-pG-SnS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CDc-3l-twB"/>
-                <constraint firstItem="yi8-oL-fnP" firstAttribute="top" secondItem="g1p-BS-OTn" secondAttribute="bottom" constant="8" id="CUd-yJ-NXT"/>
                 <constraint firstItem="Bab-dL-dh6" firstAttribute="top" secondItem="q0H-Lf-NY8" secondAttribute="bottom" constant="8" id="G7z-8B-R40"/>
                 <constraint firstItem="q0H-Lf-NY8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="HOB-8T-b6T"/>
                 <constraint firstItem="hJO-dr-17D" firstAttribute="top" secondItem="BDA-6r-rSB" secondAttribute="bottom" constant="8" id="KRg-Sv-64k"/>
                 <constraint firstAttribute="trailing" secondItem="hJO-dr-17D" secondAttribute="trailing" constant="8" id="Lea-jg-StW"/>
                 <constraint firstAttribute="trailing" secondItem="X9t-9I-Avw" secondAttribute="trailing" constant="8" id="NSM-OB-jx3"/>
-                <constraint firstAttribute="bottom" secondItem="eom-pG-SnS" secondAttribute="bottom" constant="8" id="R7A-Dz-qB5"/>
                 <constraint firstAttribute="trailing" secondItem="yi8-oL-fnP" secondAttribute="trailing" constant="8" id="Tz6-tb-Jda"/>
                 <constraint firstAttribute="trailing" secondItem="Bab-dL-dh6" secondAttribute="trailing" constant="8" id="UDe-H1-kzW"/>
                 <constraint firstItem="hJO-dr-17D" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="aOU-Rb-lqA"/>
-                <constraint firstAttribute="trailing" secondItem="g1p-BS-OTn" secondAttribute="trailing" constant="8" id="czl-jd-dhU"/>
-                <constraint firstItem="eom-pG-SnS" firstAttribute="top" secondItem="PQx-lV-bzZ" secondAttribute="bottom" constant="8" id="enO-aF-fkm"/>
                 <constraint firstAttribute="trailing" secondItem="q0H-Lf-NY8" secondAttribute="trailing" constant="8" id="fBF-tM-svR"/>
                 <constraint firstAttribute="trailing" secondItem="BDA-6r-rSB" secondAttribute="trailing" constant="8" id="mKu-L2-726"/>
                 <constraint firstItem="BDA-6r-rSB" firstAttribute="top" secondItem="X9t-9I-Avw" secondAttribute="bottom" constant="8" id="mmS-7N-uvH"/>
                 <constraint firstItem="q0H-Lf-NY8" firstAttribute="top" secondItem="hJO-dr-17D" secondAttribute="bottom" constant="8" id="myq-NG-cge"/>
-                <constraint firstItem="g1p-BS-OTn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="nBH-dH-5Vm"/>
-                <constraint firstAttribute="trailing" secondItem="PQx-lV-bzZ" secondAttribute="trailing" constant="8" id="rTR-Dd-5r9"/>
-                <constraint firstAttribute="trailing" secondItem="eom-pG-SnS" secondAttribute="trailing" constant="8" id="sR8-Uh-a1q"/>
-                <constraint firstItem="PQx-lV-bzZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="t95-8h-pbu"/>
                 <constraint firstItem="X9t-9I-Avw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="63" id="uPb-bd-a43"/>
                 <constraint firstItem="yi8-oL-fnP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="v37-7w-4ug"/>
                 <constraint firstItem="X9t-9I-Avw" firstAttribute="top" secondItem="yi8-oL-fnP" secondAttribute="bottom" constant="1" id="wIc-M5-n14"/>
-                <constraint firstItem="g1p-BS-OTn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="y7V-WU-MnD"/>
                 <constraint firstItem="BDA-6r-rSB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="yfk-VZ-xNE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

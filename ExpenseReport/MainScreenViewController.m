@@ -11,7 +11,6 @@
 
 @interface MainScreenViewController ()
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -43,15 +42,7 @@
     
     self.navigationItem.title = [NSString stringWithFormat:@"%i", self.yearSelected];
     
-    MonthsViewController *mvc = [[MonthsViewController alloc]init];
-    
-    [mvc.view setFrame:self.scrollView.frame];
-    
-    mvc.monthSelected = self.monthSelected;
-    
-    [self.scrollView addSubview:mvc.view];
-    
-    
+ 
 }
 
 - (void)didReceiveMemoryWarning {
