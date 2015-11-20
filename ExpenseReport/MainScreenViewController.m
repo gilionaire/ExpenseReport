@@ -7,7 +7,7 @@
 //
 
 #import "MainScreenViewController.h"
-#import "MonthsViewController.h"
+#import "AppDelegate.h"
 
 @interface MainScreenViewController ()
 
@@ -16,31 +16,29 @@
 
 @implementation MainScreenViewController
 
+-(instancetype)init {
+    
+    self = [super initWithStyle:UITableViewStylePlain];
+    
+    //Check the default year
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *year = [defaults objectForKey:DefaultYearPrefsKey];
+    self.yearSelected = (int)[year integerValue];
+
+    [self.navigationController setToolbarHidden:NO];
+    
+    self.navigationItem.title = [NSString stringWithFormat:@"%i", self.yearSelected];
+    
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //Check if a year was pass this means it was open previously
-    if(!self.yearSelected){
-        NSDate *date = [[NSDate alloc]init];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy"];
-        
-        NSString *year = [dateFormatter stringFromDate:date];
-        
-        self.yearSelected = (int)[year integerValue];
-    }
     
-    [self.navigationController setToolbarHidden:NO];
-    
-    //Check if a month was passed if not start in january
-    if(!self.monthSelected){
-        
-        self.monthSelected = 1;
-    }
-    
-    self.navigationItem.title = [NSString stringWithFormat:@"%i", self.yearSelected];
     
  
 }

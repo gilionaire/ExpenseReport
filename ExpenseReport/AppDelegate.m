@@ -7,36 +7,47 @@
 //
 
 #import "AppDelegate.h"
-#import "MonthsViewController.h"
+#import "MainScreenViewController.h"
 
 @interface AppDelegate ()
 
 @end
 
+NSString *const DefaultYearPrefsKey = @"DefaultYearPrefsKey";
+
 @implementation AppDelegate
 
++(void)initialize {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //Get current year
+    NSDate *date = [[NSDate alloc]init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    NSString *year = [dateFormatter stringFromDate:date];
+    
+    NSDictionary *factorySettings = @{ DefaultYearPrefsKey: @"2015"};
+    
+    [defaults registerDefaults:factorySettings];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
     // Create a MonthsViewController
-    MonthsViewController *monthsViewController = [[ MonthsViewController alloc] init];
+    MainScreenViewController *msvc = [[ MainScreenViewController alloc] init];
     
     UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:monthsViewController];
-    
-    
+                                             initWithRootViewController:msvc];
     
     // Place MonthsViewController's table view in the window hierarchy
     self.window.rootViewController = navController;
-    
-    
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    
     return YES;
 }
 

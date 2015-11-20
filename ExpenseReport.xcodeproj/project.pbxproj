@@ -15,9 +15,6 @@
 		56D6D2611BFCE43C00A57EAF /* ExpenseReportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2601BFCE43C00A57EAF /* ExpenseReportUITests.m */; };
 		56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */; };
 		617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617444FD1BFE7E13002B275E /* MainScreenViewController.m */; };
-		617445031BFE7E13002B275E /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617444FE1BFE7E13002B275E /* MainScreenViewController.xib */; };
-		617445041BFE7E13002B275E /* MonthsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617445001BFE7E13002B275E /* MonthsViewController.m */; };
-		617445051BFE7E13002B275E /* MonthsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617445011BFE7E13002B275E /* MonthsViewController.xib */; };
 		619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619ABC501BFF6A1E002F3F6B /* DetailViewController.m */; };
 		619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
@@ -56,10 +53,6 @@
 		56D6D2771BFCE8C700A57EAF /* ExpenseReport.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseReport.xcdatamodel; sourceTree = "<group>"; };
 		617444FC1BFE7E13002B275E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		617444FD1BFE7E13002B275E /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
-		617444FE1BFE7E13002B275E /* MainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainScreenViewController.xib; sourceTree = "<group>"; };
-		617444FF1BFE7E13002B275E /* MonthsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthsViewController.h; sourceTree = "<group>"; };
-		617445001BFE7E13002B275E /* MonthsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthsViewController.m; sourceTree = "<group>"; };
-		617445011BFE7E13002B275E /* MonthsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthsViewController.xib; sourceTree = "<group>"; };
 		619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		619ABC501BFF6A1E002F3F6B /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -156,10 +149,6 @@
 			children = (
 				617444FC1BFE7E13002B275E /* MainScreenViewController.h */,
 				617444FD1BFE7E13002B275E /* MainScreenViewController.m */,
-				617444FE1BFE7E13002B275E /* MainScreenViewController.xib */,
-				617444FF1BFE7E13002B275E /* MonthsViewController.h */,
-				617445001BFE7E13002B275E /* MonthsViewController.m */,
-				617445011BFE7E13002B275E /* MonthsViewController.xib */,
 				619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */,
 				619ABC501BFF6A1E002F3F6B /* DetailViewController.m */,
 				619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */,
@@ -271,10 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				56D6D24B1BFCE43C00A57EAF /* LaunchScreen.storyboard in Resources */,
-				617445051BFE7E13002B275E /* MonthsViewController.xib in Resources */,
 				619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */,
 				56D6D2481BFCE43C00A57EAF /* Assets.xcassets in Resources */,
-				617445031BFE7E13002B275E /* MainScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +288,6 @@
 			files = (
 				56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */,
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
-				617445041BFE7E13002B275E /* MonthsViewController.m in Sources */,
 				56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,
@@ -439,6 +425,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uhd.ExpenseReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -450,6 +437,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uhd.ExpenseReport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

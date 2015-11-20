@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainScreenViewController : UIViewController
+@interface MainScreenViewController : UITableViewController <UINavigationControllerDelegate>
 
 @property (nonatomic) int yearSelected;
-@property (nonatomic) int monthSelected;
 
 @end
