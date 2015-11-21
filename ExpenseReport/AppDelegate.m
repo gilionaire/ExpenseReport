@@ -27,7 +27,7 @@ NSString *const DefaultYearPrefsKey = @"DefaultYearPrefsKey";
     [dateFormatter setDateFormat:@"yyyy"];
     NSString *year = [dateFormatter stringFromDate:date];
     
-    NSDictionary *factorySettings = @{ DefaultYearPrefsKey: @"2015"};
+    NSDictionary *factorySettings = @{ DefaultYearPrefsKey: year};
     
     [defaults registerDefaults:factorySettings];
 }
