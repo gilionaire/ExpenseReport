@@ -62,12 +62,16 @@
         self.yearSelected = 1900;
     }
     self.navigationItem.title = [NSString stringWithFormat:@"%i", self.yearSelected];
+    
+    [self.tableView reloadData];
 }
 
 
 - (void)goToNextYear: (id)sender {
     self.yearSelected++;
     self.navigationItem.title = [NSString stringWithFormat:@"%i", self.yearSelected];
+    
+    [self.tableView reloadData];
 }
 
 
@@ -107,8 +111,12 @@
         
         //TO-DO have to create the monthly report class to load in here for now is 0.00 which will be the default
         TotalYearBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
-        totalCell.totalBalanceLabel.text = @"$ 0.00";
         
+        //This is for testing purpose only
+        if(self.yearSelected == 2015)
+            totalCell.totalBalanceLabel.text = @"$ 0.00";
+        else
+            totalCell.totalBalanceLabel.text = @"$ 2000.00";
         
         UIColor *color = [UIColor greenColor];
         
@@ -118,6 +126,7 @@
     }
 }
 
+//Took this from online
 - (UIColor *)darkerColorForColor:(UIColor *)c
 {
     CGFloat r, g, b, a;
@@ -141,5 +150,27 @@
     //TO-DO the settings button
     //Do the settings bundle first
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    //Do not allow to select the last row which is the balance
+    if(indexPath.row == 12) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
+    
+    //TO-DO the the push controller for the next view which is the monthly report view
+    //pass along the proper montly report object
+    
+    
+    
+    //TO-DO pass the monthly report object
+    
+    
+    
+}
+
+
+
 
 @end

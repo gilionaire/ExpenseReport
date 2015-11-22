@@ -16,6 +16,8 @@
 		56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */; };
 		614345161C025A8F00A2A19A /* TotalYearBalanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345141C025A8F00A2A19A /* TotalYearBalanceCell.m */; };
 		614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */; };
+		6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345191C0268DB00A2A19A /* MonthlyReportViewController.m */; };
+		6143451C1C0268DB00A2A19A /* MonthlyReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */; };
 		617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617444FD1BFE7E13002B275E /* MainScreenViewController.m */; };
 		619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619ABC501BFF6A1E002F3F6B /* DetailViewController.m */; };
 		619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */; };
@@ -56,6 +58,9 @@
 		614345131C025A8F00A2A19A /* TotalYearBalanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalYearBalanceCell.h; sourceTree = "<group>"; };
 		614345141C025A8F00A2A19A /* TotalYearBalanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalYearBalanceCell.m; sourceTree = "<group>"; };
 		614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalYearBalanceCell.xib; sourceTree = "<group>"; };
+		614345181C0268DB00A2A19A /* MonthlyReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyReportViewController.h; sourceTree = "<group>"; };
+		614345191C0268DB00A2A19A /* MonthlyReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyReportViewController.m; sourceTree = "<group>"; };
+		6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyReportViewController.xib; sourceTree = "<group>"; };
 		617444FC1BFE7E13002B275E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		617444FD1BFE7E13002B275E /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -168,6 +173,9 @@
 				619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */,
 				619ABC501BFF6A1E002F3F6B /* DetailViewController.m */,
 				619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */,
+				614345181C0268DB00A2A19A /* MonthlyReportViewController.h */,
+				614345191C0268DB00A2A19A /* MonthlyReportViewController.m */,
+				6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 				614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */,
 				56D6D24B1BFCE43C00A57EAF /* LaunchScreen.storyboard in Resources */,
 				619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */,
+				6143451C1C0268DB00A2A19A /* MonthlyReportViewController.xib in Resources */,
 				56D6D2481BFCE43C00A57EAF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +315,7 @@
 				56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */,
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
 				614345161C025A8F00A2A19A /* TotalYearBalanceCell.m in Sources */,
+				6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */,
 				56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,
