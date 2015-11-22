@@ -14,6 +14,8 @@
 		56D6D2561BFCE43C00A57EAF /* ExpenseReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2551BFCE43C00A57EAF /* ExpenseReportTests.m */; };
 		56D6D2611BFCE43C00A57EAF /* ExpenseReportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2601BFCE43C00A57EAF /* ExpenseReportUITests.m */; };
 		56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */; };
+		614345161C025A8F00A2A19A /* TotalYearBalanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345141C025A8F00A2A19A /* TotalYearBalanceCell.m */; };
+		614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */; };
 		617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617444FD1BFE7E13002B275E /* MainScreenViewController.m */; };
 		619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619ABC501BFF6A1E002F3F6B /* DetailViewController.m */; };
 		619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */; };
@@ -51,6 +53,9 @@
 		56D6D2601BFCE43C00A57EAF /* ExpenseReportUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpenseReportUITests.m; sourceTree = "<group>"; };
 		56D6D2621BFCE43C00A57EAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56D6D2771BFCE8C700A57EAF /* ExpenseReport.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseReport.xcdatamodel; sourceTree = "<group>"; };
+		614345131C025A8F00A2A19A /* TotalYearBalanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalYearBalanceCell.h; sourceTree = "<group>"; };
+		614345141C025A8F00A2A19A /* TotalYearBalanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalYearBalanceCell.m; sourceTree = "<group>"; };
+		614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalYearBalanceCell.xib; sourceTree = "<group>"; };
 		617444FC1BFE7E13002B275E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		617444FD1BFE7E13002B275E /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 			children = (
 				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
 				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
+				614345101C02594B00A2A19A /* TableCells */,
 				617445061BFE7E27002B275E /* ViewControllers */,
 				56D6D2471BFCE43C00A57EAF /* Assets.xcassets */,
 				56D6D2491BFCE43C00A57EAF /* LaunchScreen.storyboard */,
@@ -142,6 +148,16 @@
 				56D6D2621BFCE43C00A57EAF /* Info.plist */,
 			);
 			path = ExpenseReportUITests;
+			sourceTree = "<group>";
+		};
+		614345101C02594B00A2A19A /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				614345131C025A8F00A2A19A /* TotalYearBalanceCell.h */,
+				614345141C025A8F00A2A19A /* TotalYearBalanceCell.m */,
+				614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */,
+			);
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 		617445061BFE7E27002B275E /* ViewControllers */ = {
@@ -259,6 +275,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */,
 				56D6D24B1BFCE43C00A57EAF /* LaunchScreen.storyboard in Resources */,
 				619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */,
 				56D6D2481BFCE43C00A57EAF /* Assets.xcassets in Resources */,
@@ -288,6 +305,7 @@
 			files = (
 				56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */,
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
+				614345161C025A8F00A2A19A /* TotalYearBalanceCell.m in Sources */,
 				56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,

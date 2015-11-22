@@ -8,6 +8,7 @@
 
 #import "MainScreenViewController.h"
 #import "AppDelegate.h"
+#import "TotalYearBalanceCell.h"
 
 @interface MainScreenViewController ()
 
@@ -75,25 +76,57 @@
     // Do any additional setup after loading the view from its nib.
         
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    
+    UINib *nib = [UINib nibWithNibName:@"TotalYearBalanceCell" bundle:nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"TotalYearBalanceCell"];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return 12;
+    return 13;
 }
 
 - (UITableViewCell *) tableView:( UITableView *) tableView
           cellForRowAtIndexPath:( NSIndexPath *) indexPath
 {
     
-    //Get a new or recycled cell
-    //This is to reuse the cells for performance
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
-    cell.textLabel.text = self.months[indexPath.row];
-    
-    return cell;
+    if(indexPath.row < 12) {
+        //Get a new or recycled cell
+        //This is to reuse the cells for performance
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+        
+        cell.textLabel.text = self.months[indexPath.row];
+        
+        return cell;
+    }
+    else {
+        
+        //TO-DO have to create the monthly report class to load in here for now is 0.00 which will be the default
+        TotalYearBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+        totalCell.totalBalanceLabel.text = @"$ 0.00";
+        
+        
+        UIColor *color = [UIColor greenColor];
+        
+        totalCell.totalBalanceLabel.textColor = [self darkerColorForColor:color];
+        
+        return  totalCell;
+    }
+}
+
+- (UIColor *)darkerColorForColor:(UIColor *)c
+{
+    CGFloat r, g, b, a;
+    if ([c getRed:&r green:&g blue:&b alpha:&a])
+        return [UIColor colorWithRed:MAX(r - 0.5, 0.0)
+                               green:MAX(g - 0.5, 0.0)
+                                blue:MAX(b - 0.5, 0.0)
+                               alpha:a];
+    return nil;
 }
 
 - (void)didReceiveMemoryWarning {
