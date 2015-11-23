@@ -13,8 +13,16 @@
 // Insert code here to add functionality to your managed object subclass
 - (void)awakeFromInsert{
     [super awakeFromInsert];
-    NSTimeInterval t = [[NSDate date] timeIntervalSinceReferenceDate];
-    [self setDate:t];
+    
+    self.date = [NSDate date];
+}
+
+- (void)setMonth:(MonthReport *)month{
+    self.month = month;
+}
+
+-(MonthReport *)month{
+    return self.month;
 }
 
 @end
