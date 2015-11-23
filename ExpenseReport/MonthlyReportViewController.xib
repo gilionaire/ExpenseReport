@@ -55,6 +55,10 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="D0X-VQ-Pk7" secondAttribute="height" multiplier="359:175" id="wx8-y7-MAl"/>
                     </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9tE-yl-QZa"/>
+                        <outlet property="delegate" destination="-1" id="ZgF-ms-kfj"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sb-G5-3o2">
                     <rect key="frame" x="8" y="536" width="359" height="30"/>
@@ -92,6 +96,10 @@
                     <constraints>
                         <constraint firstAttribute="width" secondItem="6DF-bi-DrV" secondAttribute="height" multiplier="359:175" id="jdR-wZ-Hr4"/>
                     </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="HSc-uj-bRk"/>
+                        <outlet property="delegate" destination="-1" id="jeB-Rs-0Y6"/>
+                    </connections>
                 </tableView>
             </subviews>
             <animations/>

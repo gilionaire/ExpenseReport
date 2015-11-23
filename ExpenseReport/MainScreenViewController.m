@@ -8,7 +8,7 @@
 
 #import "MainScreenViewController.h"
 #import "AppDelegate.h"
-#import "TotalYearBalanceCell.h"
+#import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
 
 @interface MainScreenViewController ()
@@ -111,7 +111,7 @@
     else {
         
         //TO-DO have to create the monthly report class to load in here for now is 0.00 which will be the default
-        TotalYearBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+        TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
         
         //This is for testing purpose only
         

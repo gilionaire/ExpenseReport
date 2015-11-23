@@ -1,14 +1,14 @@
 //
-//  TotalYearBalanceCell.m
+//  TotalBalanceCell.m
 //  ExpenseReport
 //
 //  Created by Ricardo Cantu on 11/22/15.
 //  Copyright © 2015 UHD. All rights reserved.
 //
 
-#import "TotalYearBalanceCell.h"
+#import "TotalBalanceCell.h"
 
-@implementation TotalYearBalanceCell
+@implementation TotalBalanceCell
 
 - (void)awakeFromNib {
     // Initialization code

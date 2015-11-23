@@ -1,5 +1,5 @@
 //
-//  TotalYearBalanceCell.h
+//  TotalBalanceCell.h
 //  ExpenseReport
 //
 //  Created by Ricardo Cantu on 11/22/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TotalYearBalanceCell : UITableViewCell
+@interface TotalBalanceCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *totalBalanceLabel;
 

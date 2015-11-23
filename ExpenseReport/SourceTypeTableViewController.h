@@ -10,4 +10,8 @@
 
 @interface SourceTypeTableViewController : UITableViewController
 
+//TO-DO add the property for the array of the expenses or sources
+
+@property (nonatomic, copy) NSMutableArray *expensesOrIncomeArray;
+
 @end
