@@ -110,7 +110,7 @@
                 <constraint firstAttribute="bottom" secondItem="lbm-hB-VDr" secondAttribute="bottom" id="sJr-GX-V3a"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="349.5" y="525.5"/>
         </view>
     </objects>

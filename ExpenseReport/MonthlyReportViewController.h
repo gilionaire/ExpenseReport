@@ -10,4 +10,16 @@
 
 @interface MonthlyReportViewController : UIViewController
 
+//TO-DO create property of monthly report object for now created an array and int
+@property (nonatomic)int tempMonthNum;
+@property (nonatomic, copy)NSArray *tempMonths;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *totalMonthltyBalanceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addNewIncomeSourceButton;
+@property (weak, nonatomic) IBOutlet UIButton *addNewExpenseTypeButton;
+
+@property (weak, nonatomic) IBOutlet UITableView *incomeTableView;
+@property (weak, nonatomic) IBOutlet UITableView *expenseTableView;
+
 @end

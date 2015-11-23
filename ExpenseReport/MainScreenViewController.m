@@ -9,6 +9,7 @@
 #import "MainScreenViewController.h"
 #import "AppDelegate.h"
 #import "TotalYearBalanceCell.h"
+#import "MonthlyReportViewController.h"
 
 @interface MainScreenViewController ()
 
@@ -113,14 +114,30 @@
         TotalYearBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
         
         //This is for testing purpose only
+        
+        double testingBalance;
+        
         if(self.yearSelected == 2015)
-            totalCell.totalBalanceLabel.text = @"$ 0.00";
+            testingBalance = 0.00;
+        else if(self.yearSelected < 2015)
+            testingBalance = -2000.00;
         else
-            totalCell.totalBalanceLabel.text = @"$ 2000.00";
+            testingBalance = 2000.00;
+
+        //TO-DO replace with balance from monthly report
+        if(testingBalance == 0) {
+            totalCell.totalBalanceLabel.textColor = [UIColor blackColor];
+        }
+        else if( testingBalance < 0) {
+            totalCell.totalBalanceLabel.textColor = [UIColor redColor];
+        }
+        else {
+            UIColor *color = [UIColor greenColor];
         
-        UIColor *color = [UIColor greenColor];
+            totalCell.totalBalanceLabel.textColor = [self darkerColorForColor:color];
+        }
         
-        totalCell.totalBalanceLabel.textColor = [self darkerColorForColor:color];
+        totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", testingBalance]];
         
         return  totalCell;
     }
@@ -147,6 +164,7 @@
  
     [self.navigationController setToolbarHidden:NO];
     
+    [self.tableView reloadData];
     //TO-DO the settings button
     //Do the settings bundle first
 }
@@ -162,11 +180,15 @@
     //TO-DO the the push controller for the next view which is the monthly report view
     //pass along the proper montly report object
     
-    
+    MonthlyReportViewController *mrvc = [[MonthlyReportViewController alloc]init];
     
     //TO-DO pass the monthly report object
+    int monthNum = (int)indexPath.row+1;
     
+    mrvc.tempMonthNum = monthNum-1;
+    mrvc.tempMonths = self.months;
     
+    [self.navigationController pushViewController:mrvc animated:YES];
     
 }
 

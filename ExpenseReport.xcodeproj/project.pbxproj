@@ -18,6 +18,7 @@
 		614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */; };
 		6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345191C0268DB00A2A19A /* MonthlyReportViewController.m */; };
 		6143451C1C0268DB00A2A19A /* MonthlyReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */; };
+		6143451F1C02BA5B00A2A19A /* SourceTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */; };
 		617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617444FD1BFE7E13002B275E /* MainScreenViewController.m */; };
 		619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619ABC501BFF6A1E002F3F6B /* DetailViewController.m */; };
 		619ABC531BFF6A1E002F3F6B /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */; };
@@ -61,6 +62,8 @@
 		614345181C0268DB00A2A19A /* MonthlyReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthlyReportViewController.h; sourceTree = "<group>"; };
 		614345191C0268DB00A2A19A /* MonthlyReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthlyReportViewController.m; sourceTree = "<group>"; };
 		6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyReportViewController.xib; sourceTree = "<group>"; };
+		6143451D1C02BA5B00A2A19A /* SourceTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTypeTableViewController.h; sourceTree = "<group>"; };
+		6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTypeTableViewController.m; sourceTree = "<group>"; };
 		617444FC1BFE7E13002B275E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		617444FD1BFE7E13002B275E /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -176,6 +179,8 @@
 				614345181C0268DB00A2A19A /* MonthlyReportViewController.h */,
 				614345191C0268DB00A2A19A /* MonthlyReportViewController.m */,
 				6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */,
+				6143451D1C02BA5B00A2A19A /* SourceTypeTableViewController.h */,
+				6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
 				614345161C025A8F00A2A19A /* TotalYearBalanceCell.m in Sources */,
 				6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */,
+				6143451F1C02BA5B00A2A19A /* SourceTypeTableViewController.m in Sources */,
 				56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,
