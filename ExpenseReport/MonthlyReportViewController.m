@@ -8,6 +8,7 @@
 
 #import "MonthlyReportViewController.h"
 #import "SourceTypeTableViewController.h"
+#import "SourceOrTypeCell.h"
 
 @interface MonthlyReportViewController ()
 
@@ -39,8 +40,10 @@
     self.expenseKeys = [self.expenseType allKeys];
     self.incomeKeys = [self.incomeSource allKeys];
     
-    [self.incomeTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    [self.expenseTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    
+    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
 }
 
 -(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataArrays:(NSMutableArray*)dataSourceArray {
@@ -98,29 +101,65 @@
           cellForRowAtIndexPath:( NSIndexPath *) indexPath
 {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    SourceOrTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SourceOrTypeCell"];
     
     if([tableView isEqual:self.incomeTableView]){
         
-        NSString *cellText = [[self.incomeKeys objectAtIndex:indexPath.row] stringByAppendingString:@"   $"];
+        cell.sourceOrTypeLabel.text = [self.incomeKeys objectAtIndex:indexPath.row];
+                              
+        NSString *amountText = @"$ ";
         
         NSNumber *amount = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
         
-        cellText = [cellText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
+        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
         
-        cell.textLabel.text = cellText;
+        cell.amountLabel.text = amountText;
+        
+        [self setCellAmountLabelColor:amount cell:cell];
     }
     else {
-        NSString *cellText = [[self.expenseKeys objectAtIndex:indexPath.row] stringByAppendingString:@"   $"];
+        
+        cell.sourceOrTypeLabel.text = [self.expenseKeys objectAtIndex:indexPath.row];
+        
+        NSString *amountText = @"$ ";
         
         NSNumber *amount = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
         
-        cellText = [cellText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
+        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
         
-        cell.textLabel.text = cellText;
+        cell.amountLabel.text = amountText;
+        
+        [self setCellAmountLabelColor:amount cell:cell];
     }
     
     return cell;
+}
+
+-(void)setCellAmountLabelColor:(NSNumber*)amount cell:(SourceOrTypeCell*)cell {
+    
+    if([amount doubleValue] > 0) {
+        
+        cell.amountLabel.textColor = [self darkerColorForColor:[UIColor greenColor]];
+    }
+    else if([amount doubleValue] < 0) {
+        
+        cell.amountLabel.textColor = [UIColor redColor];
+    }
+    else {
+        cell.amountLabel.textColor = [UIColor blackColor];
+    }
+}
+
+//Took this from online
+- (UIColor *)darkerColorForColor:(UIColor *)c
+{
+    CGFloat r, g, b, a;
+    if ([c getRed:&r green:&g blue:&b alpha:&a])
+        return [UIColor colorWithRed:MAX(r - 0.5, 0.0)
+                               green:MAX(g - 0.5, 0.0)
+                                blue:MAX(b - 0.5, 0.0)
+                               alpha:a];
+    return nil;
 }
 
 
