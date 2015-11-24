@@ -13,7 +13,7 @@
 @implementation MonthReportCollection
 
 - (NSString *) itemArchivePath{
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     NSString *documentDirectory = [documentDirectories firstObject];
     
