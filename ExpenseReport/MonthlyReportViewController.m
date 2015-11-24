@@ -10,6 +10,7 @@
 #import "SourceTypeTableViewController.h"
 #import "SourceOrTypeCell.h"
 #import "DetailViewController.h"
+#import "MonthReportCollection.h"
 
 @interface MonthlyReportViewController ()
 
@@ -27,7 +28,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationItem.title = self.tempMonths[self.tempMonthNum];
+    self.navigationItem.title = self.monthName;
+    
+    if(!self.monthReport){
+        self.monthReport = [[MonthReportCollection sharedCollection]createMonthReport:[NSNumber numberWithInt:self.year] WithMonthNumber:[NSNumber numberWithInt:self.monthNum]];
+    }
     
     self.expenseType = [NSMutableDictionary new];
     self.incomeSource = [NSMutableDictionary new];

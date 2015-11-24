@@ -51,8 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		56BD17FC1C03A65000A231FD /* MonthReportCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReportCollection.h; sourceTree = "<group>"; };
-		56BD17FD1C03A65000A231FD /* MonthReportCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReportCollection.m; sourceTree = "<group>"; };
+		56BD17FC1C03A65000A231FD /* MonthReportCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MonthReportCollection.h; path = ExpenseReport/MonthReportCollection.h; sourceTree = "<group>"; };
+		56BD17FD1C03A65000A231FD /* MonthReportCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MonthReportCollection.m; path = ExpenseReport/MonthReportCollection.m; sourceTree = "<group>"; };
 		56BD17FF1C03C0CE00A231FD /* MonthReport+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MonthReport+CoreDataProperties.h"; sourceTree = "<group>"; };
 		56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MonthReport+CoreDataProperties.m"; sourceTree = "<group>"; };
 		56BD18011C03C0CE00A231FD /* MonthReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReport.h; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeItem.m; sourceTree = "<group>"; };
 		56D6D2381BFCE43C00A57EAF /* ExpenseReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6D23C1BFCE43C00A57EAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ExpenseReport/AppDelegate.h; sourceTree = "<group>"; };
+		56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		56D6D2471BFCE43C00A57EAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56D6D24A1BFCE43C00A57EAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -125,20 +125,6 @@
 		56D6D22F1BFCE43B00A57EAF = {
 			isa = PBXGroup;
 			children = (
-				56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */,
-				56BD17FF1C03C0CE00A231FD /* MonthReport+CoreDataProperties.h */,
-				56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */,
-				56BD18011C03C0CE00A231FD /* MonthReport.h */,
-				56BD18021C03C0CE00A231FD /* MonthReport.m */,
-				56BD91D81C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.h */,
-				56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */,
-				56BD91DA1C037CB1009BCDF6 /* IncomeItem.h */,
-				56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */,
-				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
-				56BD91D21C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.h */,
-				56BD91D31C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m */,
-				56BD91D41C037C70009BCDF6 /* ExpenseItem.h */,
-				56BD91D51C037C70009BCDF6 /* ExpenseItem.m */,
 				56D6D23A1BFCE43C00A57EAF /* ExpenseReport */,
 				56D6D2541BFCE43C00A57EAF /* ExpenseReportTests */,
 				56D6D25F1BFCE43C00A57EAF /* ExpenseReportUITests */,
@@ -160,14 +146,14 @@
 			isa = PBXGroup;
 			children = (
 				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
-				614345101C02594B00A2A19A /* TableCells */,
+				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
+				6153EF151C0413DB0073E449 /* CoreData */,
+				6153EF161C0414010073E449 /* DAO */,
 				617445061BFE7E27002B275E /* ViewControllers */,
 				56D6D2471BFCE43C00A57EAF /* Assets.xcassets */,
 				56D6D2491BFCE43C00A57EAF /* LaunchScreen.storyboard */,
 				56D6D24C1BFCE43C00A57EAF /* Info.plist */,
 				56D6D23B1BFCE43C00A57EAF /* Supporting Files */,
-				56BD17FC1C03A65000A231FD /* MonthReportCollection.h */,
-				56BD17FD1C03A65000A231FD /* MonthReportCollection.m */,
 			);
 			path = ExpenseReport;
 			sourceTree = "<group>";
@@ -211,9 +197,41 @@
 			name = TableCells;
 			sourceTree = "<group>";
 		};
+		6153EF151C0413DB0073E449 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */,
+				56BD17FF1C03C0CE00A231FD /* MonthReport+CoreDataProperties.h */,
+				56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */,
+				56BD91D81C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.h */,
+				56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */,
+				56BD91D21C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.h */,
+				56BD91D31C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m */,
+			);
+			name = CoreData;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		6153EF161C0414010073E449 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				56BD17FC1C03A65000A231FD /* MonthReportCollection.h */,
+				56BD17FD1C03A65000A231FD /* MonthReportCollection.m */,
+				56BD18011C03C0CE00A231FD /* MonthReport.h */,
+				56BD18021C03C0CE00A231FD /* MonthReport.m */,
+				56BD91DA1C037CB1009BCDF6 /* IncomeItem.h */,
+				56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */,
+				56BD91D41C037C70009BCDF6 /* ExpenseItem.h */,
+				56BD91D51C037C70009BCDF6 /* ExpenseItem.m */,
+			);
+			name = DAO;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		617445061BFE7E27002B275E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				614345101C02594B00A2A19A /* TableCells */,
 				617444FC1BFE7E13002B275E /* MainScreenViewController.h */,
 				617444FD1BFE7E13002B275E /* MainScreenViewController.m */,
 				614345181C0268DB00A2A19A /* MonthlyReportViewController.h */,

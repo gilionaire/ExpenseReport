@@ -18,7 +18,8 @@
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
-- (MonthReport *) createMonth;
+- (MonthReport *) createMonthReport:(NSNumber *)year
+                    WithMonthNumber:(NSNumber *)month;
 - (void) removeMonth:(MonthReport *)month;
 - (BOOL) saveChanges;
 
