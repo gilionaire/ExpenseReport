@@ -91,10 +91,18 @@
                     <items>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="yzP-en-nlZ"/>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="c0Q-Mf-i3I"/>
-                        <barButtonItem title="Add" id="T6w-cL-SPU"/>
+                        <barButtonItem title="Add" id="T6w-cL-SPU">
+                            <connections>
+                                <action selector="addNewIncomeOrExpense:" destination="-1" id="G4i-hE-3Tx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="rF5-v5-vRe"/>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="FEG-Vf-FMh"/>
-                        <barButtonItem title="Cancel" id="4w3-kT-786"/>
+                        <barButtonItem title="Cancel" id="4w3-kT-786">
+                            <connections>
+                                <action selector="cancel:" destination="-1" id="p4t-SC-hmy"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="PWQ-7c-a7k"/>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="iED-cE-cBt"/>
                     </items>

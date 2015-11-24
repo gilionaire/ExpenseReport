@@ -10,10 +10,12 @@
 #import "AppDelegate.h"
 #import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
+#import "MonthReportCollection.h"
 
 @interface MainScreenViewController ()
 
 @property (nonatomic)NSArray *months;
+@property (nonatomic, copy)NSMutableDictionary *yearDictionary;
 
 @end
 
@@ -187,6 +189,11 @@
     
     mrvc.tempMonthNum = monthNum-1;
     mrvc.tempMonths = self.months;
+    
+    NSMutableDictionary *monthsDictionary = [[[MonthReportCollection sharedCollection]allMonths]objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+    
+    if(monthsDictionary)
+        mrvc.monthReport = [monthsDictionary objectForKey:[NSNumber numberWithInt:monthNum]];
     
     [self.navigationController pushViewController:mrvc animated:YES];
     

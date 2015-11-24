@@ -27,7 +27,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //TO-DO set title from the monthly report object for now created an array
     self.navigationItem.title = self.tempMonths[self.tempMonthNum];
     
     self.expenseType = [NSMutableDictionary new];

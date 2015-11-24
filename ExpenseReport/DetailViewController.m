@@ -56,4 +56,12 @@
     [self.navigationController setToolbarHidden:NO animated:YES];
 }
 
+-(IBAction)addNewIncomeOrExpense:(id)sender {
+    
+}
+
+-(IBAction)cancel:(id)sender {
+    
+}
+
 @end
