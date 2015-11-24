@@ -17,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) double amount;
 @property (nullable, nonatomic, retain) NSString *comments;
-@property (nonatomic) NSTimeInterval date;
+@property (nonatomic) NSDate * date;
 @property (nullable, nonatomic, retain) NSString *type;
-@property (nullable, nonatomic, retain) NSManagedObject *month;
+@property (nullable, nonatomic, retain) MonthReport *month;
 
 @end
 

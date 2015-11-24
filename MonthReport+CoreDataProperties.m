@@ -13,9 +13,9 @@
 
 @implementation MonthReport (CoreDataProperties)
 
-@dynamic year;
-@dynamic month;
 @dynamic balance;
+@dynamic month;
+@dynamic year;
 @dynamic expenses;
 @dynamic incomes;
 
