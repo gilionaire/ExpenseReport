@@ -10,6 +10,15 @@
 #import "ExpenseItem.h"
 #import "IncomeItem.h"
 
+@import CoreData;
+
+@interface MonthReportCollection()
+
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSManagedObjectModel *model;
+
+@end
+
 @implementation MonthReportCollection
 
 - (NSString *) itemArchivePath{

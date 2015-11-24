@@ -16,7 +16,9 @@
 @property (nonatomic)BOOL isNew;
 @property (nonatomic)BOOL isIncome;
 
-@property (nonatomic, copy)ExpenseItem *expenseItem;
-@property (nonatomic, copy)IncomeItem *incomeItem;
+@property (nonatomic, retain)MonthReport *monthReport;
+
+@property (nonatomic, retain)ExpenseItem *expenseItem;
+@property (nonatomic, retain)IncomeItem *incomeItem;
 
 @end

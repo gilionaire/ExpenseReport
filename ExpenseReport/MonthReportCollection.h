@@ -11,26 +11,26 @@
 #import "ExpenseItem.h"
 #import "IncomeItem.h"
 
+
+
 @class MonthReport;
 
 @interface MonthReportCollection : NSObject
 
 @property (nonatomic) NSMutableDictionary *allMonths;
-@property (nonatomic, strong) NSManagedObjectContext *context;
-@property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
 
 - (MonthReport *) createMonthReportWithYear:(NSNumber *)year
                              AndMonthNumber:(NSNumber *)month;
 
--(ExpenseItem *) createExpenseItemWithType:(NSString *)expenseType
-                                      Date:(NSDate *)date
-                                 AndAmount:(double)amount;
-
--(IncomeItem *) createIncomeItemWithSource:(NSString *)incomeSource
-                                      Date:(NSDate *)date
-                                 AndAmount:(double)amount;
+//-(ExpenseItem *) createExpenseItemWithType:(NSString *)expenseType
+//                                      Date:(NSDate *)date
+//                                 AndAmount:(double)amount;
+//
+//-(IncomeItem *) createIncomeItemWithSource:(NSString *)incomeSource
+//                                      Date:(NSDate *)date
+//                                 AndAmount:(double)amount;
 
 - (void) removeMonth:(MonthReport *)month;
 - (BOOL) saveChanges;

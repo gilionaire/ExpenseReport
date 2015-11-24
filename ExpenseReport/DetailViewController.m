@@ -34,10 +34,10 @@
     if(self.isNew) {
         
         if(self.isIncome) {
-            self.incomeItem = [[IncomeItem alloc]init];
+            self.incomeItem = [self.monthReport createIncome];
         }
         else {
-            self.expenseItem = [[ExpenseItem alloc]init];
+            self.expenseItem = [self.monthReport createExpense];
         }
     }
 }

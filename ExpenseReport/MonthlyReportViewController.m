@@ -271,6 +271,7 @@
     
     dvc.isNew = YES;
     dvc.isIncome = YES;
+    dvc.monthReport = self.monthReport;
     
     [self.navigationController pushViewController:dvc animated:YES];
     
@@ -283,6 +284,7 @@
     
     dvc.isNew = YES;
     dvc.isIncome = NO;
+    dvc.monthReport = self.monthReport;
     
     [self.navigationController pushViewController:dvc animated:YES];
     
