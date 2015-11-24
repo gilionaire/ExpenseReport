@@ -17,7 +17,7 @@
 
 @property (nonatomic, copy)NSString *monthName;
 
-@property (nonatomic, copy)MonthReport *monthReport;
+@property (nonatomic, retain)MonthReport *monthReport;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalMonthltyBalanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addNewIncomeButton;

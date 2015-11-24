@@ -30,6 +30,16 @@
     else {
         self.sourceOrTypeLabel.text = @"Type:";
     }
+    
+    if(self.isNew) {
+        
+        if(self.isIncome) {
+            self.incomeItem = [[IncomeItem alloc]init];
+        }
+        else {
+            self.expenseItem = [[ExpenseItem alloc]init];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
