@@ -20,7 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
+
 - (ExpenseItem *) createExpense;
+- (IncomeItem *) createIncome;
+
 - (void) removeExpenseItem:(ExpenseItem *)expense;
 - (BOOL) saveChanges;
 

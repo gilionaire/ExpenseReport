@@ -67,6 +67,22 @@
 }
 
 -(IBAction)addNewIncomeOrExpense:(id)sender {
+ 
+    if(![self.sourceOrTypeTextField.text isEqualToString:@""] && ![self.amountTextField.text isEqualToString:@""]) {
+        
+    }
+    else {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle: @"Missing Information" message:@"Enter complete information" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
 }
 

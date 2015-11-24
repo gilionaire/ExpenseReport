@@ -33,7 +33,7 @@
     self.navigationItem.title = self.monthName;
     
     if(!self.monthReport){
-        self.monthReport = [[MonthReportCollection sharedCollection]createMonthReport:[NSNumber numberWithInt:self.year] WithMonthNumber:[NSNumber numberWithInt:self.monthNum]];
+        self.monthReport = [[MonthReportCollection sharedCollection]createMonthReportWithYear:[NSNumber numberWithInt:self.year] AndMonthNumber:[NSNumber numberWithInt:self.monthNum]];
     }
     
     self.expenseType = [NSMutableDictionary new];
