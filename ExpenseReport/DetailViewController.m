@@ -33,12 +33,12 @@
     
     if(self.isNew) {
         
-        if(self.isIncome) {
-            self.incomeItem = [self.monthReport createIncome];
-        }
-        else {
-            self.expenseItem = [self.monthReport createExpense];
-        }
+//        if(self.isIncome) {
+//            self.incomeItem = [self.monthReport createIncome];
+//        }
+//        else {
+//            self.expenseItem = [self.monthReport createExpense];
+//        }
     }
 }
 
