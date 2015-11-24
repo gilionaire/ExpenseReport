@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56BD17FE1C03A65000A231FD /* MonthReportCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD17FD1C03A65000A231FD /* MonthReportCollection.m */; };
+		56BD18031C03C0CE00A231FD /* MonthReport+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */; };
+		56BD18041C03C0CE00A231FD /* MonthReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD18021C03C0CE00A231FD /* MonthReport.m */; };
 		56BD91D61C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91D31C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m */; };
 		56BD91D71C037C70009BCDF6 /* ExpenseItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91D51C037C70009BCDF6 /* ExpenseItem.m */; };
 		56BD91DC1C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */; };
 		56BD91DD1C037CB1009BCDF6 /* IncomeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */; };
-		56BD91E21C037CCD009BCDF6 /* MonthReport+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91DF1C037CCD009BCDF6 /* MonthReport+CoreDataProperties.m */; };
-		56BD91E31C037CCD009BCDF6 /* MonthReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD91E11C037CCD009BCDF6 /* MonthReport.m */; };
 		56D6D23D1BFCE43C00A57EAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D23C1BFCE43C00A57EAF /* main.m */; };
 		56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */; };
 		56D6D2481BFCE43C00A57EAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56D6D2471BFCE43C00A57EAF /* Assets.xcassets */; };
@@ -50,6 +51,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56BD17FC1C03A65000A231FD /* MonthReportCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReportCollection.h; sourceTree = "<group>"; };
+		56BD17FD1C03A65000A231FD /* MonthReportCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReportCollection.m; sourceTree = "<group>"; };
+		56BD17FF1C03C0CE00A231FD /* MonthReport+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MonthReport+CoreDataProperties.h"; sourceTree = "<group>"; };
+		56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MonthReport+CoreDataProperties.m"; sourceTree = "<group>"; };
+		56BD18011C03C0CE00A231FD /* MonthReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReport.h; sourceTree = "<group>"; };
+		56BD18021C03C0CE00A231FD /* MonthReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReport.m; sourceTree = "<group>"; };
 		56BD91D21C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpenseItem+CoreDataProperties.h"; sourceTree = "<group>"; };
 		56BD91D31C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ExpenseItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		56BD91D41C037C70009BCDF6 /* ExpenseItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseItem.h; sourceTree = "<group>"; };
@@ -58,10 +65,6 @@
 		56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IncomeItem+CoreDataProperties.m"; sourceTree = "<group>"; };
 		56BD91DA1C037CB1009BCDF6 /* IncomeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeItem.h; sourceTree = "<group>"; };
 		56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeItem.m; sourceTree = "<group>"; };
-		56BD91DE1C037CCD009BCDF6 /* MonthReport+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MonthReport+CoreDataProperties.h"; sourceTree = "<group>"; };
-		56BD91DF1C037CCD009BCDF6 /* MonthReport+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MonthReport+CoreDataProperties.m"; sourceTree = "<group>"; };
-		56BD91E01C037CCD009BCDF6 /* MonthReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReport.h; sourceTree = "<group>"; };
-		56BD91E11C037CCD009BCDF6 /* MonthReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReport.m; sourceTree = "<group>"; };
 		56D6D2381BFCE43C00A57EAF /* ExpenseReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6D23C1BFCE43C00A57EAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,10 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */,
-				56BD91DE1C037CCD009BCDF6 /* MonthReport+CoreDataProperties.h */,
-				56BD91DF1C037CCD009BCDF6 /* MonthReport+CoreDataProperties.m */,
-				56BD91E01C037CCD009BCDF6 /* MonthReport.h */,
-				56BD91E11C037CCD009BCDF6 /* MonthReport.m */,
+				56BD17FF1C03C0CE00A231FD /* MonthReport+CoreDataProperties.h */,
+				56BD18001C03C0CE00A231FD /* MonthReport+CoreDataProperties.m */,
+				56BD18011C03C0CE00A231FD /* MonthReport.h */,
+				56BD18021C03C0CE00A231FD /* MonthReport.m */,
 				56BD91D81C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.h */,
 				56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */,
 				56BD91DA1C037CB1009BCDF6 /* IncomeItem.h */,
@@ -163,6 +166,8 @@
 				56D6D2491BFCE43C00A57EAF /* LaunchScreen.storyboard */,
 				56D6D24C1BFCE43C00A57EAF /* Info.plist */,
 				56D6D23B1BFCE43C00A57EAF /* Supporting Files */,
+				56BD17FC1C03A65000A231FD /* MonthReportCollection.h */,
+				56BD17FD1C03A65000A231FD /* MonthReportCollection.m */,
 			);
 			path = ExpenseReport;
 			sourceTree = "<group>";
@@ -356,19 +361,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BD17FE1C03A65000A231FD /* MonthReportCollection.m in Sources */,
 				56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */,
 				56BD91D71C037C70009BCDF6 /* ExpenseItem.m in Sources */,
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
 				56BD91DC1C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m in Sources */,
-				56BD91E31C037CCD009BCDF6 /* MonthReport.m in Sources */,
 				614345161C025A8F00A2A19A /* TotalBalanceCell.m in Sources */,
 				56BD91DD1C037CB1009BCDF6 /* IncomeItem.m in Sources */,
+				56BD18031C03C0CE00A231FD /* MonthReport+CoreDataProperties.m in Sources */,
 				6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */,
 				6143451F1C02BA5B00A2A19A /* SourceTypeTableViewController.m in Sources */,
+				56BD18041C03C0CE00A231FD /* MonthReport.m in Sources */,
 				56D6D2401BFCE43C00A57EAF /* AppDelegate.m in Sources */,
 				56BD91D61C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m in Sources */,
 				618C93581C0391D500B03CD2 /* SourceOrTypeCell.m in Sources */,
-				56BD91E21C037CCD009BCDF6 /* MonthReport+CoreDataProperties.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,
 			);

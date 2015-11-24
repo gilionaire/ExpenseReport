@@ -1,5 +1,5 @@
 //
-//  MonthReport.h
+//  MonthReportCollection.h
 //  ExpenseReport
 //
 //  Created by Group10 on 11/23/15.
@@ -9,23 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ExpenseItem, IncomeItem;
+@class MonthReport;
 
-NS_ASSUME_NONNULL_BEGIN
+@interface MonthReportCollection : NSObject
 
-@interface MonthReport : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
+@property (nonatomic) NSMutableDictionary *allMonths;
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
-- (ExpenseItem *) createExpense;
-- (void) removeExpenseItem:(ExpenseItem *)expense;
+- (MonthReport *) createMonth;
+- (void) removeMonth:(MonthReport *)month;
 - (BOOL) saveChanges;
 
 @end
-
-NS_ASSUME_NONNULL_END
-
-#import "MonthReport+CoreDataProperties.h"
