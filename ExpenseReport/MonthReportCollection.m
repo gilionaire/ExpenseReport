@@ -10,6 +10,15 @@
 #import "ExpenseItem.h"
 #import "IncomeItem.h"
 
+@import CoreData;
+
+@interface MonthReportCollection()
+
+@property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSManagedObjectModel *model;
+
+@end
+
 @implementation MonthReportCollection
 
 - (NSString *) itemArchivePath{
@@ -68,8 +77,8 @@
     return self;
 }
 
-- (MonthReport *) createMonthReport:(NSNumber *)year
-                    WithMonthNumber:(NSNumber *)month
+- (MonthReport *) createMonthReportWithYear:(NSNumber *)year
+                    AndMonthNumber:(NSNumber *)month
 {
     MonthReport *monthReport = [NSEntityDescription insertNewObjectForEntityForName:@"MonthReport" inManagedObjectContext:self.context];
     NSMutableDictionary *monthDict = [self.allMonths objectForKey:year];

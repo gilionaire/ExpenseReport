@@ -30,6 +30,16 @@
     else {
         self.sourceOrTypeLabel.text = @"Type:";
     }
+    
+    if(self.isNew) {
+        
+        if(self.isIncome) {
+            self.incomeItem = [self.monthReport createIncome];
+        }
+        else {
+            self.expenseItem = [self.monthReport createExpense];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +64,30 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+-(IBAction)addNewIncomeOrExpense:(id)sender {
+ 
+    if(![self.sourceOrTypeTextField.text isEqualToString:@""] && ![self.amountTextField.text isEqualToString:@""]) {
+        
+    }
+    else {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle: @"Missing Information" message:@"Enter complete information" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+}
+
+-(IBAction)cancel:(id)sender {
+    
 }
 
 @end

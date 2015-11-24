@@ -10,10 +10,12 @@
 #import "AppDelegate.h"
 #import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
+#import "MonthReportCollection.h"
 
 @interface MainScreenViewController ()
 
 @property (nonatomic)NSArray *months;
+@property (nonatomic, copy)NSMutableDictionary *yearDictionary;
 
 @end
 
@@ -110,25 +112,15 @@
     }
     else {
         
-        //TO-DO have to create the monthly report class to load in here for now is 0.00 which will be the default
         TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
         
-        //This is for testing purpose only
-        
-        double testingBalance;
-        
-        if(self.yearSelected == 2015)
-            testingBalance = 0.00;
-        else if(self.yearSelected < 2015)
-            testingBalance = -2000.00;
-        else
-            testingBalance = 2000.00;
+        double totalBalance = [[self calculateTotalYearBalance]doubleValue];
 
         //TO-DO replace with balance from monthly report
-        if(testingBalance == 0) {
+        if(totalBalance == 0) {
             totalCell.totalBalanceLabel.textColor = [UIColor blackColor];
         }
-        else if( testingBalance < 0) {
+        else if( totalBalance < 0) {
             totalCell.totalBalanceLabel.textColor = [UIColor redColor];
         }
         else {
@@ -137,10 +129,28 @@
             totalCell.totalBalanceLabel.textColor = [self darkerColorForColor:color];
         }
         
-        totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", testingBalance]];
+        totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", totalBalance]];
         
         return  totalCell;
     }
+}
+
+-(NSNumber*)calculateTotalYearBalance {
+    
+    double totalBalance = 0;
+    
+    NSMutableDictionary *monthsDictionary = [[[MonthReportCollection sharedCollection]allMonths]objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+    
+    NSArray* monthReports = [monthsDictionary allValues];
+    
+    if(monthReports){
+    
+        for(MonthReport* monthReport in monthReports) {
+            totalBalance += monthReport.balance;
+        }
+    }
+    
+    return [NSNumber numberWithDouble:totalBalance];
 }
 
 //Took this from online
@@ -185,8 +195,14 @@
     //TO-DO pass the monthly report object
     int monthNum = (int)indexPath.row+1;
     
-    mrvc.tempMonthNum = monthNum-1;
-    mrvc.tempMonths = self.months;
+    mrvc.monthNum = monthNum;
+    mrvc.monthName = self.months[monthNum-1];
+    mrvc.year = self.yearSelected;
+    
+    NSMutableDictionary *monthsDictionary = [[[MonthReportCollection sharedCollection]allMonths]objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+    
+    if(monthsDictionary)
+        mrvc.monthReport = [monthsDictionary objectForKey:[NSNumber numberWithInt:monthNum]];
     
     [self.navigationController pushViewController:mrvc animated:YES];
     

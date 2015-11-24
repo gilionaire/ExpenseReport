@@ -10,12 +10,22 @@
 #import "ExpenseItem.h"
 #import "IncomeItem.h"
 
+@import CoreData;
+
+@interface MonthReport()
+
+//// Insert code here to declare functionality of your managed object subclass
+//@property (nonatomic, strong) NSManagedObjectContext *context;
+//@property (nonatomic, strong) NSManagedObjectModel *model;
+
+@end
+
 @implementation MonthReport
 
 // Insert code here to add functionality to your managed object subclass
 
 - (NSString *) itemArchivePath{
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     // Get the one document directory from that list
     NSString *documentDirectory = [documentDirectories firstObject];

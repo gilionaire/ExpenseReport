@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExpenseItem.h"
+#import "IncomeItem.h"
 
 @interface DetailViewController : UIViewController <UINavigationControllerDelegate>
 
 //Add property for expense and income
 @property (nonatomic)BOOL isNew;
 @property (nonatomic)BOOL isIncome;
+
+@property (nonatomic, retain)MonthReport *monthReport;
+
+@property (nonatomic, retain)ExpenseItem *expenseItem;
+@property (nonatomic, retain)IncomeItem *incomeItem;
 
 @end

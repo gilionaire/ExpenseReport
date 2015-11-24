@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MonthReport.h"
 
 @interface MonthlyReportViewController : UIViewController <UITableViewDelegate>
 
 //TO-DO create property of monthly report object for now created an array and int
-@property (nonatomic)int tempMonthNum;
-@property (nonatomic, copy)NSArray *tempMonths;
+@property (nonatomic)int monthNum;
+@property (nonatomic)int year;
+
+@property (nonatomic, copy)NSString *monthName;
+
+@property (nonatomic, retain)MonthReport *monthReport;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalMonthltyBalanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addNewIncomeButton;

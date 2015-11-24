@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+@import CoreData;
 
 @class ExpenseItem, IncomeItem;
 
@@ -20,7 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
+
 - (ExpenseItem *) createExpense;
+- (IncomeItem *) createIncome;
+
 - (void) removeExpenseItem:(ExpenseItem *)expense;
 - (BOOL) saveChanges;
 

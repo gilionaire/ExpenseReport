@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "ExpenseItem.h"
+#import "IncomeItem.h"
+
+
 
 @class MonthReport;
 
 @interface MonthReportCollection : NSObject
 
 @property (nonatomic) NSMutableDictionary *allMonths;
-@property (nonatomic, strong) NSManagedObjectContext *context;
-@property (nonatomic, strong) NSManagedObjectModel *model;
 
 + (instancetype) sharedCollection;
 - (BOOL) saveChanges;

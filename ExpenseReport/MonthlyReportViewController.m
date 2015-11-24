@@ -10,6 +10,9 @@
 #import "SourceTypeTableViewController.h"
 #import "SourceOrTypeCell.h"
 #import "DetailViewController.h"
+#import "MonthReportCollection.h"
+#import "IncomeItem.h"
+#import "ExpenseItem.h"
 
 @interface MonthlyReportViewController ()
 
@@ -27,23 +30,28 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //TO-DO set title from the monthly report object for now created an array
-    self.navigationItem.title = self.tempMonths[self.tempMonthNum];
+    self.navigationItem.title = self.monthName;
+    
+    if(!self.monthReport){
+        self.monthReport = [[MonthReportCollection sharedCollection]createMonthReportWithYear:[NSNumber numberWithInt:self.year] AndMonthNumber:[NSNumber numberWithInt:self.monthNum]];
+    }
     
     self.expenseType = [NSMutableDictionary new];
     self.incomeSource = [NSMutableDictionary new];
     
-    NSMutableArray *testingArrayExpense = [[NSMutableArray alloc]init];
-    NSMutableArray *testingArrayIncome = [[NSMutableArray alloc]init];
+//    NSMutableArray *testingArrayExpense = [[NSMutableArray alloc]init];
+//    NSMutableArray *testingArrayIncome = [[NSMutableArray alloc]init];
     
-    [testingArrayExpense addObject:@2000];
-    [testingArrayIncome addObject:@2000];
+//    self.monthReport.expenses = [[nsse]]
     
-    [self.expenseType setObject:testingArrayExpense forKey:@"Best Buy"];
-    [self.incomeSource setObject:testingArrayIncome forKey:@"Best Buy"];
+//    [testingArrayExpense addObject:@2000];
+//    [testingArrayIncome addObject:@2000];
     
-    [self populateDictionaries:self.incomeSource dataArrays:nil];
-    [self populateDictionaries:self.expenseType dataArrays:nil];
+//    [self.expenseType setObject:testingArrayExpense forKey:@"Best Buy"];
+//    [self.incomeSource setObject:testingArrayIncome forKey:@"Best Buy"];
+    
+    [self populateDictionaries:self.incomeSource dataSet:self.monthReport.incomes classType:[IncomeItem class]];
+    [self populateDictionaries:self.expenseType dataSet:self.monthReport.expenses classType:[ExpenseItem class]];
     
     self.expenseKeys = [self.expenseType allKeys];
     self.incomeKeys = [self.incomeSource allKeys];
@@ -90,26 +98,44 @@
     return [NSNumber numberWithDouble:totalAmount];
 }
 
--(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataArrays:(NSMutableArray*)dataSourceArray {
+-(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSSet*)dataSourceSet classType:(id)classType {
+    
+    //array from data set
+    NSArray *data = [dataSourceSet allObjects];
     
     //replace number 2 with the data source array
-    for(int indexOfDataSourceArray = 0; indexOfDataSourceArray < 2; indexOfDataSourceArray++){
+    for(int dataIndex = 0; dataIndex < data.count; dataIndex++){
         
+        NSString *key;
+        
+        //Is income type
+        if([classType isKindOfClass:[IncomeItem class]]) {
+         
+            IncomeItem *income = data[dataIndex];
+            key = income.source;
+        }
+        else {
+            
+            ExpenseItem *expense = data[dataIndex];
+        
+            key = expense.type;
+        }
+       
         //Replace the string with the datasource objects type or source
-        if([dictionaryToPopulate objectForKey:@"Best Buy"] && indexOfDataSourceArray==0){
+        if([dictionaryToPopulate objectForKey:key]){
             
-            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:@"Best Buy"];
+            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:key];
             
-            [arrayFromDictionary addObject:@500];
+            [arrayFromDictionary addObject:data[dataIndex]];
             
-            [dictionaryToPopulate setObject:arrayFromDictionary forKey:@"Best Buy"];
+            [dictionaryToPopulate setObject:arrayFromDictionary forKey:key];
         }
         else{
             
             //replace string and int with dataSource values
             NSMutableArray *otherOne = [[NSMutableArray alloc]init];
-            [otherOne addObject:@2000];
-            [dictionaryToPopulate setObject:otherOne forKey:@"UHD"];
+            [otherOne addObject:data[dataIndex]];
+            [dictionaryToPopulate setObject:otherOne forKey:key];
         }
     }
 }
@@ -245,6 +271,7 @@
     
     dvc.isNew = YES;
     dvc.isIncome = YES;
+    dvc.monthReport = self.monthReport;
     
     [self.navigationController pushViewController:dvc animated:YES];
     
@@ -257,6 +284,7 @@
     
     dvc.isNew = YES;
     dvc.isIncome = NO;
+    dvc.monthReport = self.monthReport;
     
     [self.navigationController pushViewController:dvc animated:YES];
     
