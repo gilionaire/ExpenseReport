@@ -106,8 +106,7 @@
     
     [super viewWillDisappear:YES];
     
-    [self.navigationController setToolbarHidden:NO animated:YES];
-    
+    [self.navigationController setToolbarHidden:NO animated:YES];    
 }
 
 -(IBAction)addNewIncomeOrExpense:(id)sender {

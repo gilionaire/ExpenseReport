@@ -29,43 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationItem.title = self.monthName;
-    
-    if(!self.monthReport){
-        self.monthReport = [[MonthReport alloc]init];
-    }
-    
-    self.expenseType = self.monthReport.expenses;
-    self.incomeSource = self.monthReport.incomes;
-    
-//    NSMutableArray *testingArrayExpense = [[NSMutableArray alloc]init];
-//    NSMutableArray *testingArrayIncome = [[NSMutableArray alloc]init];
-    
-//    self.monthReport.expenses = [[nsse]]
-    
-//    [testingArrayExpense addObject:@2000];
-//    [testingArrayIncome addObject:@2000];
-    
-//    [self.expenseType setObject:testingArrayExpense forKey:@"Best Buy"];
-//    [self.incomeSource setObject:testingArrayIncome forKey:@"Best Buy"];
-    
-    [self populateDictionaries:self.incomeSource dataSet:[self.monthReport.incomes allValues]classType:[IncomeItem class]];
-    [self populateDictionaries:self.expenseType dataSet:[self.monthReport.expenses allValues] classType:[ExpenseItem class]];
-    
-    self.expenseKeys = [self.expenseType allKeys];
-    self.incomeKeys = [self.incomeSource allKeys];
-    
-    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
-    
-    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
-    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
-    
-    NSNumber *totalAmount = [self calculateTotalMonthlyBalance];
-    
-    self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",[totalAmount doubleValue]]];
-    
-    [self setLabelColor:totalAmount label:self.totalMonthltyBalanceLabel];
-    
 }
 
 //Calculate the total monthly balance
@@ -160,6 +123,30 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    
+    self.navigationItem.title = self.monthName;
+    
+    self.expenseType = self.monthReport.expenses;
+    self.incomeSource = self.monthReport.incomes;
+    
+    [self populateDictionaries:self.incomeSource dataSet:[self.monthReport.incomes allValues]classType:[IncomeItem class]];
+    [self populateDictionaries:self.expenseType dataSet:[self.monthReport.expenses allValues] classType:[ExpenseItem class]];
+    
+    self.expenseKeys = [self.expenseType allKeys];
+    self.incomeKeys = [self.incomeSource allKeys];
+    
+    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    
+    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    
+    NSNumber *totalAmount = [self calculateTotalMonthlyBalance];
+    
+    self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",[totalAmount doubleValue]]];
+    
+    [self setLabelColor:totalAmount label:self.totalMonthltyBalanceLabel];
+
+    
     [self.incomeTableView reloadData];
     [self.expenseTableView reloadData];
 
