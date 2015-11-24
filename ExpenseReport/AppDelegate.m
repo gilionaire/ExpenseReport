@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainScreenViewController.h"
+#import "ExpensesCollection.h"
+#import "IncomeCollection.h"
 
 @interface AppDelegate ()
 
@@ -59,6 +61,24 @@ NSString *const DefaultYearPrefsKey = @"DefaultYearPrefsKey";
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    BOOL success = [[ExpensesCollection sharedCollection] saveChanges];
+    if (success)
+    {
+        NSLog(@" Saved all of the expenses");
+    }
+    else
+    {
+        NSLog(@" Could not save any of the expenses");
+    }
+    success = [[IncomeCollection sharedCollection] saveChanges];
+    if (success)
+    {
+        NSLog(@" Saved all of the income items");
+    }
+    else
+    {
+        NSLog(@" Could not save any of the income items");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
