@@ -145,8 +145,8 @@
 		56D6D23A1BFCE43C00A57EAF /* ExpenseReport */ = {
 			isa = PBXGroup;
 			children = (
-				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
 				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
+				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
 				6153EF151C0413DB0073E449 /* CoreData */,
 				6153EF161C0414010073E449 /* DAO */,
 				617445061BFE7E27002B275E /* ViewControllers */,
