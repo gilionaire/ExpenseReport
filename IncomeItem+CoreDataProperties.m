@@ -17,6 +17,5 @@
 @dynamic comments;
 @dynamic date;
 @dynamic source;
-@dynamic month;
 
 @end

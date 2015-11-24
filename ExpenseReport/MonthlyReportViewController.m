@@ -35,8 +35,8 @@
         self.monthReport = [[MonthReport alloc]init];
     }
     
-    self.expenseType = [NSMutableDictionary new];
-    self.incomeSource = [NSMutableDictionary new];
+    self.expenseType = self.monthReport.expenses;
+    self.incomeSource = self.monthReport.incomes;
     
 //    NSMutableArray *testingArrayExpense = [[NSMutableArray alloc]init];
 //    NSMutableArray *testingArrayIncome = [[NSMutableArray alloc]init];
@@ -49,8 +49,8 @@
 //    [self.expenseType setObject:testingArrayExpense forKey:@"Best Buy"];
 //    [self.incomeSource setObject:testingArrayIncome forKey:@"Best Buy"];
     
-    [self populateDictionaries:self.incomeSource dataSet:self.monthReport.incomes classType:[IncomeItem class]];
-    [self populateDictionaries:self.expenseType dataSet:self.monthReport.expenses classType:[ExpenseItem class]];
+    [self populateDictionaries:self.incomeSource dataSet:[self.monthReport.incomes allValues]classType:[IncomeItem class]];
+    [self populateDictionaries:self.expenseType dataSet:[self.monthReport.expenses allValues] classType:[ExpenseItem class]];
     
     self.expenseKeys = [self.expenseType allKeys];
     self.incomeKeys = [self.incomeSource allKeys];
@@ -97,25 +97,22 @@
     return [NSNumber numberWithDouble:totalAmount];
 }
 
--(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSSet*)dataSourceSet classType:(id)classType {
-    
-    //array from data set
-    NSArray *data = [dataSourceSet allObjects];
+-(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSArray*)dataSource classType:(id)classType {
     
     //replace number 2 with the data source array
-    for(int dataIndex = 0; dataIndex < data.count; dataIndex++){
+    for(int dataIndex = 0; dataIndex < dataSource.count; dataIndex++){
         
         NSString *key;
         
         //Is income type
         if([classType isKindOfClass:[IncomeItem class]]) {
          
-            IncomeItem *income = data[dataIndex];
+            IncomeItem *income = dataSource[dataIndex];
             key = income.source;
         }
         else {
             
-            ExpenseItem *expense = data[dataIndex];
+            ExpenseItem *expense = dataSource[dataIndex];
         
             key = expense.type;
         }
@@ -125,7 +122,7 @@
             
             NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:key];
             
-            [arrayFromDictionary addObject:data[dataIndex]];
+            [arrayFromDictionary addObject:dataSource[dataIndex]];
             
             [dictionaryToPopulate setObject:arrayFromDictionary forKey:key];
         }
@@ -133,7 +130,7 @@
             
             //replace string and int with dataSource values
             NSMutableArray *otherOne = [[NSMutableArray alloc]init];
-            [otherOne addObject:data[dataIndex]];
+            [otherOne addObject:dataSource[dataIndex]];
             [dictionaryToPopulate setObject:otherOne forKey:key];
         }
     }
@@ -165,6 +162,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [self.incomeTableView reloadData];
     [self.expenseTableView reloadData];
+
 }
 
 
@@ -272,6 +270,10 @@
     dvc.isIncome = YES;
     dvc.monthReport = self.monthReport;
     
+    dvc.dismissBlock = ^{
+        [self.incomeTableView reloadData];
+    };
+    
     [self.navigationController pushViewController:dvc animated:YES];
     
 }
@@ -284,6 +286,10 @@
     dvc.isNew = YES;
     dvc.isIncome = NO;
     dvc.monthReport = self.monthReport;
+    
+    dvc.dismissBlock = ^{
+        [self.expenseTableView reloadData];
+    };
     
     [self.navigationController pushViewController:dvc animated:YES];
     

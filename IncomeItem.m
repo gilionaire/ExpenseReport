@@ -18,12 +18,5 @@
     self.date = [NSDate date];
 }
 
-- (void)setMonth:(MonthReport *)month{
-    self.month = month;
-}
-
--(MonthReport *)month{
-    return self.month;
-}
 
 @end

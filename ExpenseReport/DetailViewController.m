@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "IncomeCollection.h"
+#import "ExpensesCollection.h"
 
 @interface DetailViewController ()
 
@@ -33,12 +35,12 @@
     
     if(self.isNew) {
         
-//        if(self.isIncome) {
-//            self.incomeItem = [self.monthReport createIncome];
-//        }
-//        else {
-//            self.expenseItem = [self.monthReport createExpense];
-//        }
+        if(self.isIncome) {
+            self.incomeItem = [[IncomeCollection sharedCollection]createIncome];
+        }
+        else {
+            self.expenseItem = [[ExpensesCollection sharedCollection]createExpense];
+        }
     }
 }
 
@@ -63,15 +65,54 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    
+    
+    
+    //if is a new item
+    if(self.isNew) {
+        
+        if(self.isIncome) {
+            [[IncomeCollection sharedCollection]removeIncome:self.incomeItem];
+        }
+        else {
+            [[ExpensesCollection sharedCollection]removeExpense:self.expenseItem];
+        }
+    }
+    else {
+        
+       
+        
+        if(self.isIncome) {
+            
+            IncomeItem *item = self.incomeItem;
+            item.source = self.sourceOrTypeTextField.text;
+            item.date = self.datePicker.date;
+//            double amount;
+//            
+//            if([[NSScanner scannerWithString:self.amountTextField.text]scanDouble:&amount]){
+//                
+//                item.amount = amount;
+//            }
+            item.amount = [self.amountTextField.text doubleValue];
+            
+            [self.monthReport.incomes setObject:item forKey:item.source];
+        }
+        else {
+            
+        }
+    }
+    //Is this necessary?
+    //[self.view endEditing:YES];
+    
+    [super viewWillDisappear:YES];
+    
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
 }
 
 -(IBAction)addNewIncomeOrExpense:(id)sender {
  
-    if(![self.sourceOrTypeTextField.text isEqualToString:@""] && ![self.amountTextField.text isEqualToString:@""]) {
-        
-    }
-    else {
+    if([self.sourceOrTypeTextField.text isEqualToString:@""] && [self.amountTextField.text isEqualToString:@""]) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle: @"Missing Information" message:@"Enter complete information" preferredStyle:UIAlertControllerStyleAlert];
         
@@ -83,11 +124,25 @@
         
         [self presentViewController:alert animated:YES completion:nil];
     }
+    else {
+        
+        self.isNew = false;
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 
 -(IBAction)cancel:(id)sender {
     
+    if(self.isIncome) {
+        [[IncomeCollection sharedCollection]removeIncome:self.incomeItem];
+    }
+    else {
+        [[ExpensesCollection sharedCollection]removeExpense:self.expenseItem];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

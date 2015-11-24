@@ -10,11 +10,15 @@
 #import "AppDelegate.h"
 #import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
+#import "IncomeCollection.h"
+#import "ExpensesCollection.h"
+#import "IncomeItem.h"
+#import "ExpenseItem.h"
 
 @interface MainScreenViewController ()
 
 @property (nonatomic)NSArray *months;
-@property (nonatomic, copy)NSMutableDictionary *yearDictoinary;
+@property (nonatomic, retain)NSMutableDictionary *yearDictoinary;
 
 @end
 
@@ -46,6 +50,75 @@
     return self;
 }
 
+-(void)populateYearDicitonary {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM"];
+    
+    NSMutableArray *incomes = [[IncomeCollection sharedCollection]allIncomes];
+    
+    for(int indexIncomes = 0;  indexIncomes < incomes.count; indexIncomes++) {
+        
+        IncomeItem *income = incomes[indexIncomes];
+    
+        int monthNum = [[dateFormatter stringFromDate:income.date]intValue];
+        
+        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]] objectForKey:[NSNumber numberWithInt:monthNum]];
+        
+        if(!monthReport) {
+            
+            monthReport = [[MonthReport alloc]init];
+        }
+        
+        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+        
+        if(!monthDictionary) {
+            
+            monthDictionary = [[NSMutableDictionary alloc]init];
+        }
+
+        //Add Income to month report
+        [monthReport.incomes setObject:income forKey:income.source];
+        
+        //Add month report to monthdictionary
+        [monthDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
+        
+        //Add month dictionary to year dictionary
+        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:self.yearSelected]];
+    }
+
+    NSMutableArray *expenses = [[ExpensesCollection sharedCollection]allExpenses];
+    
+    for(int indexExpenses = 0;  indexExpenses < expenses.count; indexExpenses++) {
+        
+        ExpenseItem *expense = expenses[indexExpenses];
+        
+        int monthNum = [[dateFormatter stringFromDate:expense.date]intValue];
+        
+        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]] objectForKey:[NSNumber numberWithInt:monthNum]];
+        
+        if(!monthReport) {
+            
+            monthReport = [[MonthReport alloc]init];
+        }
+        
+        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+        
+        if(!monthDictionary) {
+            
+            monthDictionary = [[NSMutableDictionary alloc]init];
+        }
+        
+        //Add Income to month report
+        [monthReport.expenses setObject:expense forKey:expense.type];
+        
+        //Add month report to monthdictionary
+        [monthDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
+        
+        //Add month dictionary to year dictionary
+        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:self.yearSelected]];
+    }
+}
 
 -(void)goToPreviousYear: (id)sender {
     self.yearSelected--;
@@ -177,6 +250,8 @@
     [self.tableView reloadData];
     //TO-DO the settings button
     //Do the settings bundle first
+    
+    [self populateYearDicitonary];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -186,9 +261,6 @@
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }
-    
-    //TO-DO the the push controller for the next view which is the monthly report view
-    //pass along the proper montly report object
     
     MonthlyReportViewController *mrvc = [[MonthlyReportViewController alloc]init];
     
@@ -201,8 +273,20 @@
     
     NSMutableDictionary *monthsDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
     
-    if(monthsDictionary)
-        mrvc.monthReport = [monthsDictionary objectForKey:[NSNumber numberWithInt:monthNum]];
+    if(!monthsDictionary) {
+        monthsDictionary = [[NSMutableDictionary alloc]init];
+        NSLog(@"%i",[[NSNumber numberWithInt:self.yearSelected]intValue]);
+        [self.yearDictoinary setObject:monthsDictionary forKey:[NSNumber numberWithInt:self.yearSelected]];
+    }
+    
+    MonthReport* monthReport = [monthsDictionary objectForKey:[NSNumber numberWithInt:monthNum]];
+    
+    if(!monthReport) {
+        monthReport = [[MonthReport alloc]init];
+        [monthsDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
+    }
+    
+    mrvc.monthReport = monthReport;
     
     [self.navigationController pushViewController:mrvc animated:YES];
     
