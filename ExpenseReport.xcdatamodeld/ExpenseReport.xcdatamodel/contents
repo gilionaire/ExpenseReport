@@ -5,25 +5,17 @@
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="month" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MonthReport" inverseName="expenses" inverseEntity="MonthReport" syncable="YES"/>
+        <relationship name="month" optional="YES" maxCount="1" deletionRule="Nullify" syncable="YES"/>
     </entity>
     <entity name="IncomeItem" representedClassName="IncomeItem" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="month" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MonthReport" inverseName="incomes" inverseEntity="MonthReport" syncable="YES"/>
-    </entity>
-    <entity name="MonthReport" representedClassName="MonthReport" syncable="YES">
-        <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="expenses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExpenseItem" inverseName="month" inverseEntity="ExpenseItem" syncable="YES"/>
-        <relationship name="incomes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IncomeItem" inverseName="month" inverseEntity="IncomeItem" syncable="YES"/>
+        <relationship name="month" optional="YES" maxCount="1" deletionRule="Nullify" syncable="YES"/>
     </entity>
     <elements>
         <element name="ExpenseItem" positionX="-54" positionY="18" width="128" height="120"/>
         <element name="IncomeItem" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="MonthReport" positionX="-54" positionY="27" width="128" height="120"/>
     </elements>
 </model>
