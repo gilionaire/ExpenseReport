@@ -10,12 +10,11 @@
 #import "AppDelegate.h"
 #import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
-#import "MonthReportCollection.h"
 
 @interface MainScreenViewController ()
 
 @property (nonatomic)NSArray *months;
-@property (nonatomic, copy)NSMutableDictionary *yearDictionary;
+@property (nonatomic, copy)NSMutableDictionary *yearDictoinary;
 
 @end
 
@@ -29,6 +28,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     NSString *year = [defaults objectForKey:DefaultYearPrefsKey];
+    
     self.yearSelected = (int)[year integerValue];
 
     [self.navigationController setToolbarHidden:NO];
@@ -139,9 +139,9 @@
     
     double totalBalance = 0;
     
-    NSMutableDictionary *monthsDictionary = [[[MonthReportCollection sharedCollection]allMonths]objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+    self.yearDictoinary = [[NSMutableDictionary alloc]init];
     
-    NSArray* monthReports = [monthsDictionary allValues];
+    NSArray* monthReports = [self.yearDictoinary allValues];
     
     if(monthReports){
     
@@ -199,7 +199,7 @@
     mrvc.monthName = self.months[monthNum-1];
     mrvc.year = self.yearSelected;
     
-    NSMutableDictionary *monthsDictionary = [[[MonthReportCollection sharedCollection]allMonths]objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+    NSMutableDictionary *monthsDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
     
     if(monthsDictionary)
         mrvc.monthReport = [monthsDictionary objectForKey:[NSNumber numberWithInt:monthNum]];

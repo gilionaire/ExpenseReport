@@ -10,7 +10,6 @@
 #import "SourceTypeTableViewController.h"
 #import "SourceOrTypeCell.h"
 #import "DetailViewController.h"
-#import "MonthReportCollection.h"
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
 
@@ -33,7 +32,7 @@
     self.navigationItem.title = self.monthName;
     
     if(!self.monthReport){
-        self.monthReport = [[MonthReportCollection sharedCollection]createMonthReportWithYear:[NSNumber numberWithInt:self.year] AndMonthNumber:[NSNumber numberWithInt:self.monthNum]];
+        self.monthReport = [[MonthReport alloc]init];
     }
     
     self.expenseType = [NSMutableDictionary new];
