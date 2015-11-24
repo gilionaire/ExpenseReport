@@ -17,6 +17,5 @@
 @dynamic comments;
 @dynamic date;
 @dynamic type;
-@dynamic month;
 
 @end

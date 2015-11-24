@@ -19,6 +19,8 @@
 		56D6D2611BFCE43C00A57EAF /* ExpenseReportUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2601BFCE43C00A57EAF /* ExpenseReportUITests.m */; };
 		56D6D2781BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 56D6D2761BFCE8C700A57EAF /* ExpenseReport.xcdatamodeld */; };
 		56FC6F7D1C04CAD40016CE54 /* MonthReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FC6F7C1C04CAD40016CE54 /* MonthReport.m */; };
+		56FC6F801C04CC580016CE54 /* ExpensesCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FC6F7F1C04CC580016CE54 /* ExpensesCollection.m */; };
+		56FC6F831C04D4430016CE54 /* IncomeCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FC6F821C04D4430016CE54 /* IncomeCollection.m */; };
 		614345161C025A8F00A2A19A /* TotalBalanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345141C025A8F00A2A19A /* TotalBalanceCell.m */; };
 		614345171C025A8F00A2A19A /* TotalYearBalanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */; };
 		6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345191C0268DB00A2A19A /* MonthlyReportViewController.m */; };
@@ -73,6 +75,10 @@
 		56D6D2771BFCE8C700A57EAF /* ExpenseReport.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseReport.xcdatamodel; sourceTree = "<group>"; };
 		56FC6F7B1C04CAD40016CE54 /* MonthReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthReport.h; sourceTree = "<group>"; };
 		56FC6F7C1C04CAD40016CE54 /* MonthReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReport.m; sourceTree = "<group>"; };
+		56FC6F7E1C04CC580016CE54 /* ExpensesCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesCollection.h; sourceTree = "<group>"; };
+		56FC6F7F1C04CC580016CE54 /* ExpensesCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesCollection.m; sourceTree = "<group>"; };
+		56FC6F811C04D4430016CE54 /* IncomeCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncomeCollection.h; sourceTree = "<group>"; };
+		56FC6F821C04D4430016CE54 /* IncomeCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncomeCollection.m; sourceTree = "<group>"; };
 		614345131C025A8F00A2A19A /* TotalBalanceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TotalBalanceCell.h; sourceTree = "<group>"; };
 		614345141C025A8F00A2A19A /* TotalBalanceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TotalBalanceCell.m; sourceTree = "<group>"; };
 		614345151C025A8F00A2A19A /* TotalYearBalanceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TotalYearBalanceCell.xib; sourceTree = "<group>"; };
@@ -213,6 +219,10 @@
 				56BD91D51C037C70009BCDF6 /* ExpenseItem.m */,
 				56FC6F7B1C04CAD40016CE54 /* MonthReport.h */,
 				56FC6F7C1C04CAD40016CE54 /* MonthReport.m */,
+				56FC6F7E1C04CC580016CE54 /* ExpensesCollection.h */,
+				56FC6F7F1C04CC580016CE54 /* ExpensesCollection.m */,
+				56FC6F811C04D4430016CE54 /* IncomeCollection.h */,
+				56FC6F821C04D4430016CE54 /* IncomeCollection.m */,
 			);
 			name = DAO;
 			path = ..;
@@ -373,6 +383,7 @@
 				56BD91D71C037C70009BCDF6 /* ExpenseItem.m in Sources */,
 				617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */,
 				56BD91DC1C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m in Sources */,
+				56FC6F831C04D4430016CE54 /* IncomeCollection.m in Sources */,
 				56FC6F7D1C04CAD40016CE54 /* MonthReport.m in Sources */,
 				614345161C025A8F00A2A19A /* TotalBalanceCell.m in Sources */,
 				56BD91DD1C037CB1009BCDF6 /* IncomeItem.m in Sources */,
@@ -383,6 +394,7 @@
 				618C93581C0391D500B03CD2 /* SourceOrTypeCell.m in Sources */,
 				56D6D23D1BFCE43C00A57EAF /* main.m in Sources */,
 				619ABC521BFF6A1E002F3F6B /* DetailViewController.m in Sources */,
+				56FC6F801C04CC580016CE54 /* ExpensesCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

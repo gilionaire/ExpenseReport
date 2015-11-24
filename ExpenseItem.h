@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "MonthReport.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpenseItem : NSManagedObject

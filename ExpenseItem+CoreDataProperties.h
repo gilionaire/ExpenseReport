@@ -10,6 +10,7 @@
 //
 
 #import "ExpenseItem.h"
+#import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *comments;
 @property (nonatomic) NSDate * date;
 @property (nullable, nonatomic, retain) NSString *type;
-@property (nullable, nonatomic, retain) MonthReport *month;
 
 @end
 
