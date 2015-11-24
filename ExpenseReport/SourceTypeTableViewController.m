@@ -37,7 +37,11 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
     
-    cell.textLabel.text = self.expensesOrIncomeArray[indexPath.row];
+    NSNumber *amount = self.expensesOrIncomeArray[indexPath.row];
+    
+    NSString *amountText = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f", [amount doubleValue]]];
+    
+    cell.textLabel.text = amountText;
     
     return cell;
 }

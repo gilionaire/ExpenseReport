@@ -64,7 +64,7 @@
 		56BD91E11C037CCD009BCDF6 /* MonthReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthReport.m; sourceTree = "<group>"; };
 		56D6D2381BFCE43C00A57EAF /* ExpenseReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56D6D23C1BFCE43C00A57EAF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ExpenseReport/AppDelegate.h; sourceTree = "<group>"; };
 		56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		56D6D2471BFCE43C00A57EAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56D6D24A1BFCE43C00A57EAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -131,6 +131,7 @@
 				56BD91D91C037CB1009BCDF6 /* IncomeItem+CoreDataProperties.m */,
 				56BD91DA1C037CB1009BCDF6 /* IncomeItem.h */,
 				56BD91DB1C037CB1009BCDF6 /* IncomeItem.m */,
+				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
 				56BD91D21C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.h */,
 				56BD91D31C037C70009BCDF6 /* ExpenseItem+CoreDataProperties.m */,
 				56BD91D41C037C70009BCDF6 /* ExpenseItem.h */,
@@ -155,7 +156,6 @@
 		56D6D23A1BFCE43C00A57EAF /* ExpenseReport */ = {
 			isa = PBXGroup;
 			children = (
-				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
 				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
 				614345101C02594B00A2A19A /* TableCells */,
 				617445061BFE7E27002B275E /* ViewControllers */,
@@ -211,12 +211,12 @@
 			children = (
 				617444FC1BFE7E13002B275E /* MainScreenViewController.h */,
 				617444FD1BFE7E13002B275E /* MainScreenViewController.m */,
-				619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */,
-				619ABC501BFF6A1E002F3F6B /* DetailViewController.m */,
-				619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */,
 				614345181C0268DB00A2A19A /* MonthlyReportViewController.h */,
 				614345191C0268DB00A2A19A /* MonthlyReportViewController.m */,
 				6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */,
+				619ABC4F1BFF6A1E002F3F6B /* DetailViewController.h */,
+				619ABC501BFF6A1E002F3F6B /* DetailViewController.m */,
+				619ABC511BFF6A1E002F3F6B /* DetailViewController.xib */,
 				6143451D1C02BA5B00A2A19A /* SourceTypeTableViewController.h */,
 				6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */,
 			);

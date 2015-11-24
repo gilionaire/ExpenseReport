@@ -10,4 +10,8 @@
 
 @interface DetailViewController : UIViewController <UINavigationControllerDelegate>
 
+//Add property for expense and income
+@property (nonatomic)BOOL isNew;
+@property (nonatomic)BOOL isIncome;
+
 @end

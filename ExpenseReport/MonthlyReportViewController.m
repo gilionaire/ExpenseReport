@@ -9,11 +9,13 @@
 #import "MonthlyReportViewController.h"
 #import "SourceTypeTableViewController.h"
 #import "SourceOrTypeCell.h"
+#import "DetailViewController.h"
 
 @interface MonthlyReportViewController ()
 
 @property (nonatomic,retain)NSMutableDictionary *expenseType;
 @property (nonatomic,retain)NSMutableDictionary *incomeSource;
+
 @property (nonatomic,copy)NSArray *expenseKeys;
 @property (nonatomic,copy)NSArray *incomeKeys;
 
@@ -31,8 +33,14 @@
     self.expenseType = [NSMutableDictionary new];
     self.incomeSource = [NSMutableDictionary new];
     
-    [self.expenseType setObject:@2000.00 forKey:@"Best Buy"];
-    [self.incomeSource setObject:@2000.00 forKey:@"Best Buy"];
+    NSMutableArray *testingArrayExpense = [[NSMutableArray alloc]init];
+    NSMutableArray *testingArrayIncome = [[NSMutableArray alloc]init];
+    
+    [testingArrayExpense addObject:@2000];
+    [testingArrayIncome addObject:@2000];
+    
+    [self.expenseType setObject:testingArrayExpense forKey:@"Best Buy"];
+    [self.incomeSource setObject:testingArrayIncome forKey:@"Best Buy"];
     
     [self populateDictionaries:self.incomeSource dataArrays:nil];
     [self populateDictionaries:self.expenseType dataArrays:nil];
@@ -44,6 +52,42 @@
     
     [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    
+    NSNumber *totalAmount = [self calculateTotalMonthlyBalance];
+    
+    self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",[totalAmount doubleValue]]];
+    
+    [self setLabelColor:totalAmount label:self.totalMonthltyBalanceLabel];
+    
+}
+
+//Calculate the total monthly balance
+-(NSNumber*)calculateTotalMonthlyBalance {
+    
+    double totalAmount = 0;
+    
+    for(NSString* incomeKey in self.incomeSource){
+        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
+        totalAmount += [[self totalFromSet:incomes] doubleValue];
+    }
+    
+    for(NSString* expenseKey in self.expenseType){
+        NSMutableArray *expenses = [self.expenseType objectForKey:expenseKey];
+        totalAmount += [[self totalFromSet:expenses] doubleValue];
+    }
+    
+    return [NSNumber numberWithDouble:totalAmount];
+}
+
+-(NSNumber*)totalFromSet:(NSMutableArray*)dataSourceArray {
+    double totalAmount = 0;
+    
+    //For now is NSNumber replace with object
+    for(NSNumber *amount in dataSourceArray){
+        totalAmount += [amount doubleValue];
+    }
+    
+    return [NSNumber numberWithDouble:totalAmount];
 }
 
 -(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataArrays:(NSMutableArray*)dataSourceArray {
@@ -54,16 +98,18 @@
         //Replace the string with the datasource objects type or source
         if([dictionaryToPopulate objectForKey:@"Best Buy"] && indexOfDataSourceArray==0){
             
-            NSNumber *prevAmount = [dictionaryToPopulate objectForKey:@"Best Buy"];
-            double amount = [prevAmount doubleValue];
-            amount += 500.00;
-            prevAmount = [NSNumber numberWithDouble:amount];
-            [dictionaryToPopulate setObject:[NSNumber numberWithDouble:amount] forKey:@"Best Buy"];
+            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:@"Best Buy"];
+            
+            [arrayFromDictionary addObject:@500];
+            
+            [dictionaryToPopulate setObject:arrayFromDictionary forKey:@"Best Buy"];
         }
         else{
             
             //replace string and int with dataSource values
-            [dictionaryToPopulate setObject:@2000 forKey:@"UHD"];
+            NSMutableArray *otherOne = [[NSMutableArray alloc]init];
+            [otherOne addObject:@2000];
+            [dictionaryToPopulate setObject:otherOne forKey:@"UHD"];
         }
     }
 }
@@ -109,13 +155,15 @@
                               
         NSString *amountText = @"$ ";
         
-        NSNumber *amount = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
+        NSMutableArray *incomes = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
+        
+        NSNumber *amount = [self totalFromSet:incomes];
         
         amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
         
         cell.amountLabel.text = amountText;
         
-        [self setCellAmountLabelColor:amount cell:cell];
+        [self setLabelColor:amount label:cell.amountLabel];
     }
     else {
         
@@ -123,30 +171,32 @@
         
         NSString *amountText = @"$ ";
         
-        NSNumber *amount = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
+        NSMutableArray*expenses = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
+        
+        NSNumber *amount = [self totalFromSet:expenses];
         
         amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
         
         cell.amountLabel.text = amountText;
         
-        [self setCellAmountLabelColor:amount cell:cell];
+        [self setLabelColor:amount label:cell.amountLabel];
     }
     
     return cell;
 }
 
--(void)setCellAmountLabelColor:(NSNumber*)amount cell:(SourceOrTypeCell*)cell {
+-(void)setLabelColor:(NSNumber*)amount label:(UILabel*)label {
     
     if([amount doubleValue] > 0) {
         
-        cell.amountLabel.textColor = [self darkerColorForColor:[UIColor greenColor]];
+        label.textColor = [self darkerColorForColor:[UIColor greenColor]];
     }
     else if([amount doubleValue] < 0) {
         
-        cell.amountLabel.textColor = [UIColor redColor];
+        label.textColor = [UIColor redColor];
     }
     else {
-        cell.amountLabel.textColor = [UIColor blackColor];
+        label.textColor = [UIColor blackColor];
     }
 }
 
@@ -162,5 +212,53 @@
     return nil;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //Income tablte view selection
+    if([tableView isEqual:self.incomeTableView]) {
+        
+        SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
+        
+        //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
+        sttvc.expensesOrIncomeArray = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
+        sttvc.title = [@"Income: " stringByAppendingString:self.incomeKeys[indexPath.row]];
+        
+        [self.navigationController pushViewController:sttvc animated:YES];
+        
+    }
+    //Expense table view selection
+    else {
+        SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
+        
+        //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
+        sttvc.expensesOrIncomeArray = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
+        sttvc.title = [@"Expense: " stringByAppendingString:self.expenseKeys[indexPath.row]];
+        
+        [self.navigationController pushViewController:sttvc animated:YES];
+    }
+}
 
+//Button action to add new incom
+- (IBAction)addNewIncome:(id)sender {
+    
+    DetailViewController *dvc = [[DetailViewController alloc]init];
+    
+    dvc.isNew = YES;
+    dvc.isIncome = YES;
+    
+    [self.navigationController pushViewController:dvc animated:YES];
+    
+}
+
+//Button action to add new expense
+- (IBAction)addNewExpense:(id)sender {
+    
+    DetailViewController *dvc = [[DetailViewController alloc]init];
+    
+    dvc.isNew = YES;
+    dvc.isIncome = NO;
+    
+    [self.navigationController pushViewController:dvc animated:YES];
+    
+}
 @end

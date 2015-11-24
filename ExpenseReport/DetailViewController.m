@@ -23,6 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    if(self.isIncome) {
+        self.sourceOrTypeLabel.text = @"Source:";
+    }
+    else {
+        self.sourceOrTypeLabel.text = @"Type:";
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,6 +42,18 @@
     [self.sourceOrTypeTextField resignFirstResponder];
     [self.amountTextField resignFirstResponder];
     [self.commentsTextBox resignFirstResponder];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    //If this is a new the hide the toolbar to diplay the add and cancel buttons
+    if(self.isNew) {
+        [self.navigationController setToolbarHidden:YES];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 @end

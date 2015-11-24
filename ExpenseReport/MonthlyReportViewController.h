@@ -15,8 +15,8 @@
 @property (nonatomic, copy)NSArray *tempMonths;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalMonthltyBalanceLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addNewIncomeSourceButton;
-@property (weak, nonatomic) IBOutlet UIButton *addNewExpenseTypeButton;
+@property (weak, nonatomic) IBOutlet UIButton *addNewIncomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *addNewExpenseButton;
 
 @property (weak, nonatomic) IBOutlet UITableView *incomeTableView;
 @property (weak, nonatomic) IBOutlet UITableView *expenseTableView;

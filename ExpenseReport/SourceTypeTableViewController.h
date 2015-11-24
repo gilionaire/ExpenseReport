@@ -14,4 +14,6 @@
 
 @property (nonatomic, copy) NSMutableArray *expensesOrIncomeArray;
 
+@property (nonatomic, copy) NSString* title;
+
 @end

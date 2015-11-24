@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MonthlyReportViewController">
             <connections>
-                <outlet property="addNewExpenseTypeButton" destination="4Sb-G5-3o2" id="8X0-4G-RNA"/>
-                <outlet property="addNewIncomeSourceButton" destination="fBS-WQ-wAS" id="7Zo-1R-jdH"/>
+                <outlet property="addNewExpenseButton" destination="4Sb-G5-3o2" id="anD-d6-yCc"/>
+                <outlet property="addNewIncomeButton" destination="fBS-WQ-wAS" id="wcy-t3-USJ"/>
                 <outlet property="expenseTableView" destination="D0X-VQ-Pk7" id="oVL-lp-zGh"/>
                 <outlet property="incomeTableView" destination="6DF-bi-DrV" id="Zra-ZX-0Uh"/>
                 <outlet property="totalMonthltyBalanceLabel" destination="H6U-K3-bs9" id="PKz-Wx-NXc"/>
@@ -31,12 +31,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-WQ-wAS">
-                    <rect key="frame" x="8" y="286" width="359" height="30"/>
+                    <rect key="frame" x="124" y="286" width="126" height="30"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="sUz-3x-Osv"/>
                     </constraints>
-                    <state key="normal" title="Add New Income Source"/>
+                    <state key="normal" title="Add New Income"/>
+                    <connections>
+                        <action selector="addNewIncome:" destination="-1" eventType="touchUpInside" id="2C4-Dx-W4o"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28t-mS-uCb">
                     <rect key="frame" x="8" y="324" width="359" height="21"/>
@@ -60,14 +63,6 @@
                         <outlet property="delegate" destination="-1" id="ZgF-ms-kfj"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sb-G5-3o2">
-                    <rect key="frame" x="8" y="536" width="359" height="30"/>
-                    <animations/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="M3z-tv-tJp"/>
-                    </constraints>
-                    <state key="normal" title="Add New Expense Type"/>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c67-L3-e9L">
                     <rect key="frame" x="8" y="581" width="147" height="21"/>
                     <animations/>
@@ -101,6 +96,17 @@
                         <outlet property="delegate" destination="-1" id="jeB-Rs-0Y6"/>
                     </connections>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sb-G5-3o2">
+                    <rect key="frame" x="114" y="536" width="147" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="M3z-tv-tJp"/>
+                    </constraints>
+                    <state key="normal" title="Add New Expense"/>
+                    <connections>
+                        <action selector="addNewExpense:" destination="-1" eventType="touchUpInside" id="yXz-ft-TSD"/>
+                    </connections>
+                </button>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -108,7 +114,7 @@
                 <constraint firstItem="tSk-Af-RsW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="CiP-MZ-N7d"/>
                 <constraint firstAttribute="trailing" secondItem="6DF-bi-DrV" secondAttribute="trailing" constant="8" id="Cwx-gz-fcf"/>
                 <constraint firstItem="D0X-VQ-Pk7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="KvA-Qn-T5E"/>
-                <constraint firstAttribute="trailing" secondItem="fBS-WQ-wAS" secondAttribute="trailing" constant="8" id="MzS-oi-Bot"/>
+                <constraint firstAttribute="trailing" secondItem="fBS-WQ-wAS" secondAttribute="trailing" constant="125" id="MzS-oi-Bot"/>
                 <constraint firstItem="c67-L3-e9L" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="QpV-Jf-N1F"/>
                 <constraint firstAttribute="trailing" secondItem="H6U-K3-bs9" secondAttribute="trailing" constant="8" id="UCy-VT-9IR"/>
                 <constraint firstAttribute="trailing" secondItem="28t-mS-uCb" secondAttribute="trailing" constant="8" id="V5J-Dk-DED"/>
@@ -121,14 +127,14 @@
                 <constraint firstItem="6DF-bi-DrV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="h2k-K3-4Me"/>
                 <constraint firstAttribute="trailing" secondItem="tSk-Af-RsW" secondAttribute="trailing" constant="8" id="hBe-Uo-izA"/>
                 <constraint firstItem="6DF-bi-DrV" firstAttribute="top" secondItem="tSk-Af-RsW" secondAttribute="bottom" constant="8" id="lNU-Vi-XX9"/>
-                <constraint firstAttribute="trailing" secondItem="4Sb-G5-3o2" secondAttribute="trailing" constant="8" id="lZL-is-3cu"/>
+                <constraint firstAttribute="trailing" secondItem="4Sb-G5-3o2" secondAttribute="trailing" constant="114" id="lZL-is-3cu"/>
                 <constraint firstItem="fBS-WQ-wAS" firstAttribute="top" secondItem="6DF-bi-DrV" secondAttribute="bottom" constant="8" id="qNa-dJ-zkC"/>
                 <constraint firstItem="28t-mS-uCb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="rTX-ec-rUM"/>
-                <constraint firstItem="fBS-WQ-wAS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="rza-y3-1WB"/>
+                <constraint firstItem="fBS-WQ-wAS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="124" id="rza-y3-1WB"/>
                 <constraint firstItem="D0X-VQ-Pk7" firstAttribute="top" secondItem="28t-mS-uCb" secondAttribute="bottom" constant="8" id="s0C-D2-8Qk"/>
                 <constraint firstAttribute="trailing" secondItem="D0X-VQ-Pk7" secondAttribute="trailing" constant="8" id="tZq-8a-FOU"/>
                 <constraint firstAttribute="bottom" secondItem="H6U-K3-bs9" secondAttribute="bottom" constant="65" id="ugx-Si-ogs"/>
-                <constraint firstItem="4Sb-G5-3o2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="vzI-C7-3hx"/>
+                <constraint firstItem="4Sb-G5-3o2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="114" id="vzI-C7-3hx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
