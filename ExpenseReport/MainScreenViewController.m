@@ -28,13 +28,10 @@
 -(instancetype)init {
     
     self = [super initWithStyle:UITableViewStylePlain];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy"];
     
-    //Check the default year
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *year = [defaults objectForKey:DefaultYearPrefsKey];
-    
-    self.yearSelected = (int)[year integerValue];
+    self.yearSelected = [[dateFormatter stringFromDate:[NSDate date]]intValue];
 
     [self.navigationController setToolbarHidden:NO];
     

@@ -15,7 +15,10 @@
 
 @end
 
-NSString *const DefaultYearPrefsKey = @"DefaultYearPrefsKey";
+NSString *const DefaultIncomeSourcePrefsKey = @"DefaultIncomeSource";
+NSString *const DefaultIncomeAmountPrefsKey = @"DefaultIncomeAmount";
+NSString *const DefaulExpenseTypePrefsKey = @"DefaultExpenseType";
+NSString *const DefaultExpenseAmountPrefsKey = @"DefaultExpenseAmount";
 
 @implementation AppDelegate
 
@@ -23,13 +26,10 @@ NSString *const DefaultYearPrefsKey = @"DefaultYearPrefsKey";
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //Get current year
-    NSDate *date = [[NSDate alloc]init];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy"];
-    NSString *year = [dateFormatter stringFromDate:date];
-    
-    NSDictionary *factorySettings = @{ DefaultYearPrefsKey: year};
+    NSDictionary *factorySettings = @{ DefaultIncomeSourcePrefsKey: @"Apple",
+                                       DefaultIncomeAmountPrefsKey: @100,
+                                       DefaulExpenseTypePrefsKey: @"Movie",
+                                       DefaultExpenseAmountPrefsKey: @10};
     
     [defaults registerDefaults:factorySettings];
 }

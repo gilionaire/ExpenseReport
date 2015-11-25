@@ -26,6 +26,7 @@
 		6143451B1C0268DB00A2A19A /* MonthlyReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 614345191C0268DB00A2A19A /* MonthlyReportViewController.m */; };
 		6143451C1C0268DB00A2A19A /* MonthlyReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */; };
 		6143451F1C02BA5B00A2A19A /* SourceTypeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */; };
+		616DB7C71C062BD00061A375 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 616DB7C61C062BD00061A375 /* Settings.bundle */; };
 		617445021BFE7E13002B275E /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 617444FD1BFE7E13002B275E /* MainScreenViewController.m */; };
 		618C93581C0391D500B03CD2 /* SourceOrTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 618C93561C0391D500B03CD2 /* SourceOrTypeCell.m */; };
 		618C93591C0391D500B03CD2 /* SourceOrTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 618C93571C0391D500B03CD2 /* SourceOrTypeCell.xib */; };
@@ -87,6 +88,7 @@
 		6143451A1C0268DB00A2A19A /* MonthlyReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthlyReportViewController.xib; sourceTree = "<group>"; };
 		6143451D1C02BA5B00A2A19A /* SourceTypeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTypeTableViewController.h; sourceTree = "<group>"; };
 		6143451E1C02BA5B00A2A19A /* SourceTypeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceTypeTableViewController.m; sourceTree = "<group>"; };
+		616DB7C61C062BD00061A375 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		617444FC1BFE7E13002B275E /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		617444FD1BFE7E13002B275E /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		618C93551C0391D500B03CD2 /* SourceOrTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceOrTypeCell.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		56D6D23A1BFCE43C00A57EAF /* ExpenseReport */ = {
 			isa = PBXGroup;
 			children = (
+				616DB7C61C062BD00061A375 /* Settings.bundle */,
 				56D6D23E1BFCE43C00A57EAF /* AppDelegate.h */,
 				56D6D23F1BFCE43C00A57EAF /* AppDelegate.m */,
 				6153EF151C0413DB0073E449 /* CoreData */,
@@ -355,6 +358,7 @@
 				6143451C1C0268DB00A2A19A /* MonthlyReportViewController.xib in Resources */,
 				56D6D2481BFCE43C00A57EAF /* Assets.xcassets in Resources */,
 				618C93591C0391D500B03CD2 /* SourceOrTypeCell.xib in Resources */,
+				616DB7C71C062BD00061A375 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

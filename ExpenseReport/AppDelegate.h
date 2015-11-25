@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const DefaultYearPrefsKey;
+extern NSString *const DefaultIncomeSourcePrefsKey;
+extern NSString *const DefaultIncomeAmountPrefsKey;
+extern NSString *const DefaulExpenseTypePrefsKey;
+extern NSString *const DefaultExpenseAmountPrefsKey;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
