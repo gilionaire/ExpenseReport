@@ -23,6 +23,9 @@
 
 @property (nonatomic, copy)NSString *sourceOrTypeTile;
 
+@property (nonatomic)int monthNum;
+@property (nonatomic)int year;
+
 //If have time apply the pop view like the student
 //@property (nonatomic, copy)void (^dismissBlock)(void);
 

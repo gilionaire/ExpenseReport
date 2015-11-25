@@ -187,7 +187,7 @@
             
             double totalExpenseAmount = self.monthReport.monthTotalExpensesBalance;
             
-            totalCell.totalBalanceLabel.text = [NSString stringWithFormat:@"%0.02f", totalExpenseAmount];
+            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.02f", totalExpenseAmount]];
             
             [self setLabelColor:totalExpenseAmount label:totalCell.totalBalanceLabel];
             

@@ -60,6 +60,55 @@
             self.commentsTextBox.text = self.expenseItem.comments;
         }
     }
+    
+    [self setMaxAndMinimumDate];
+}
+
+-(void)setMaxAndMinimumDate {
+    
+    //Set the constrains for the datepicker to stay in bounds of the month and year
+    NSDate *minDate;
+    NSDate *maxDate;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM/yyyy"];
+    
+    NSString *minDateStr;
+    NSString *maxDateStr;
+    
+    if(self.monthReport){
+        minDateStr = [NSString stringWithFormat:@"%i/%i",
+                      self.monthReport.monthNum,
+                      self.monthReport.yearNum];
+        
+    }
+    else {
+        minDateStr = [NSString stringWithFormat:@"%i/%i",
+                      self.monthNum,
+                      self.year];
+    }
+    
+    minDate = [dateFormatter dateFromString:minDateStr];
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitWeekOfYear|NSCalendarUnitWeekday fromDate:minDate];
+    
+    // set last of month
+    [comps setMonth:[comps month]+1];
+    [comps setDay:0];
+    maxDate = [calendar dateFromComponents:comps];
+    
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    maxDateStr = [dateFormatter stringFromDate:maxDate];
+    //NSLog(maxDateStr);
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+    maxDateStr = [maxDateStr stringByAppendingString:@" 11:59 PM"];
+    maxDate = [dateFormatter dateFromString:maxDateStr];
+    
+    self.datePicker.minimumDate = minDate;
+    NSLog(@"Minimum Date: %@", minDate);
+    self.datePicker.maximumDate = maxDate;
+    NSLog(@"Maximum Date: %@", maxDate);
 }
 
 - (void)didReceiveMemoryWarning {

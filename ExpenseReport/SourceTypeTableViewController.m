@@ -13,6 +13,7 @@
 #import "ExpensesCollection.h"
 #import "IncomeCollection.h"
 #import "DetailViewController.h"
+#import "TotalBalanceCell.h"
 
 @interface SourceTypeTableViewController ()
 
@@ -63,7 +64,11 @@
     
     [self.navigationController setToolbarHidden:NO];
     
-    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"TotalYearBalanceCell" bundle:nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"TotalYearBalanceCell"];
+    
+    nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     
@@ -89,12 +94,45 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [self.expensesOrIncomeArray count];
+    return [self.expensesOrIncomeArray count]+1;
+}
+
+-(double)calculateBalance {
+    double balance = 0;
+    
+    if(self.isIncome) {
+        
+        for(IncomeItem *income in self.expensesOrIncomeArray) {
+            balance += income.amount;
+        }
+    }
+    else {
+        for(ExpenseItem *expense in self.expensesOrIncomeArray) {
+            balance += expense.amount;
+        }
+    }
+    
+    return balance;
 }
 
 - (UITableViewCell *) tableView:( UITableView *) tableView
           cellForRowAtIndexPath:( NSIndexPath *) indexPath
 {
+    
+    if(indexPath.row == self.expensesOrIncomeArray.count){
+        
+        TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+        
+        double totalBalance = [self calculateBalance];
+        
+        totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", totalBalance]];
+        
+        [self setLabelColor:totalBalance label:totalCell.totalBalanceLabel];
+        
+        totalCell.totalTextLabel.text = @"Total Amount:";
+        
+        return  totalCell;
+    }
 
     SourceOrTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SourceOrTypeCell"];
     
@@ -128,10 +166,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
  
+    //Do not allow to select the last row which is the balance
+    if(indexPath.row == self.expensesOrIncomeArray.count) {
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        return;
+    }
     DetailViewController *dvc = [[DetailViewController alloc]init];
     
     dvc.isNew = NO;
     dvc.isIncome = self.isIncome;
+    dvc.monthNum = self.monthReport.monthNum;
+    dvc.year = self.monthReport.yearNum;
     
     if(self.isIncome) {
         dvc.incomeItem = self.expensesOrIncomeArray[indexPath.row];

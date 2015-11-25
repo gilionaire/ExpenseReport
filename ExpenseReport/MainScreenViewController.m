@@ -369,6 +369,8 @@
     if(!monthReport) {
         monthReport = [[MonthReport alloc]init];
         [monthsDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
+        monthReport.monthNum = monthNum;
+        monthReport.yearNum = self.yearSelected;
     }
     
     mrvc.monthReport = monthReport;
