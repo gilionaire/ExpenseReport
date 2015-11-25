@@ -29,25 +29,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.title = self.monthName;
+    
+    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    
+    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
+    
 }
-
-////Calculate the total monthly balance
-//-(NSNumber*)calculateTotalMonthlyBalance {
-//    
-//    double totalAmount = 0;
-//    
-//    for(NSString* incomeKey in self.incomeSource){
-//        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
-//        totalAmount += [[self totalFromSet:incomes] doubleValue];
-//    }
-//    
-//    for(NSString* expenseKey in self.expenseType){
-//        NSMutableArray *expenses = [self.expenseType objectForKey:expenseKey];
-//        totalAmount += [[self totalFromSet:expenses] doubleValue];
-//    }
-//    
-//    return [NSNumber numberWithDouble:totalAmount];
-//}
 
 -(double)totalFromSet:(NSMutableArray*)dataSourceArray classType:(id)classType{
     
@@ -68,45 +57,6 @@
     
     return totalAmount;
 }
-
-//-(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSArray*)dataSource classType:(id)classType {
-//    
-//    //replace number 2 with the data source array
-//    for(int dataIndex = 0; dataIndex < dataSource.count; dataIndex++){
-//        
-//        NSString *key;
-//        
-//        //Is income type
-//        if([classType isKindOfClass:[IncomeItem class]]) {
-//         
-//            IncomeItem *income = dataSource[dataIndex];
-//            key = income.source;
-//        }
-//        else {
-//            
-//            ExpenseItem *expense = dataSource[dataIndex];
-//        
-//            key = expense.type;
-//        }
-//       
-//        //Replace the string with the datasource objects type or source
-//        if([dictionaryToPopulate objectForKey:key]){
-//            
-//            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:key];
-//            
-//            [arrayFromDictionary addObject:dataSource[dataIndex]];
-//            
-//            [dictionaryToPopulate setObject:arrayFromDictionary forKey:key];
-//        }
-//        else{
-//            
-//            //replace string and int with dataSource values
-//            NSMutableArray *otherOne = [[NSMutableArray alloc]init];
-//            [otherOne addObject:dataSource[dataIndex]];
-//            [dictionaryToPopulate setObject:otherOne forKey:key];
-//        }
-//    }
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -133,18 +83,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.navigationItem.title = self.monthName;
-    
     self.expenseType = self.monthReport.expenses;
     self.incomeSource = self.monthReport.incomes;
     
     self.expenseKeys = [self.expenseType allKeys];
     self.incomeKeys = [self.incomeSource allKeys];
-    
-    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
-    
-    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
-    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     
     double totalAmount = self.monthReport.monthTotalIncomesAndExpensesBalance;
     
@@ -239,7 +182,8 @@
         
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
         sttvc.expensesOrIncomeArray = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
-        sttvc.title = [@"Income: " stringByAppendingString:self.incomeKeys[indexPath.row]];
+        sttvc.sourceOrTypeTitle = self.incomeKeys[indexPath.row];
+        sttvc.isIncome = YES;
         
         [self.navigationController pushViewController:sttvc animated:YES];
         
@@ -250,7 +194,8 @@
         
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
         sttvc.expensesOrIncomeArray = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
-        sttvc.title = [@"Expense: " stringByAppendingString:self.expenseKeys[indexPath.row]];
+        sttvc.sourceOrTypeTitle = self.expenseKeys[indexPath.row];
+        sttvc.isIncome = NO;
         
         [self.navigationController pushViewController:sttvc animated:YES];
     }

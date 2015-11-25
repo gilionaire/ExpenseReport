@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SourceTypeTableViewController : UITableViewController
+@interface SourceTypeTableViewController : UITableViewController <UINavigationControllerDelegate>
 
 //TO-DO add the property for the array of the expenses or sources
 
-@property (nonatomic, copy) NSMutableArray *expensesOrIncomeArray;
+@property (nonatomic, retain) NSMutableArray *expensesOrIncomeArray;
+@property (nonatomic, copy) NSString* sourceOrTypeTitle;
 
-@property (nonatomic, copy) NSString* title;
+@property (nonatomic)BOOL isIncome;
 
 @end

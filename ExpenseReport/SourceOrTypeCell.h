@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SourceOrTypeCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *sourceOrTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 
