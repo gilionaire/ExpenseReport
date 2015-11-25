@@ -22,4 +22,6 @@
 - (void) removeIncome:(IncomeItem *)income;
 - (BOOL) saveChanges;
 
+-(double)currentIncomesBalance;
+
 @end

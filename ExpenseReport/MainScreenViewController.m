@@ -14,6 +14,7 @@
 #import "ExpensesCollection.h"
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
+#import "SourceOrTypeCell.h"
 
 @interface MainScreenViewController ()
 
@@ -189,18 +190,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
         
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     
     UINib *nib = [UINib nibWithNibName:@"TotalYearBalanceCell" bundle:nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier:@"TotalYearBalanceCell"];
     
+    nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return 13;
+    return 14;
 }
 
 - (UITableViewCell *) tableView:( UITableView *) tableView
@@ -211,35 +215,68 @@
     if(indexPath.row < 12) {
         //Get a new or recycled cell
         //This is to reuse the cells for performance
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+        SourceOrTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SourceOrTypeCell"];
         
-        cell.textLabel.text = self.months[indexPath.row];
+        cell.sourceOrTypeLabel.text = self.months[indexPath.row];
+        
+        double amount = [self calculateMonthBalanceForMonthNum:(int)indexPath.row+1];
+        
+        cell.amountLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f", amount]];
+        
+        [self setLabelColor:amount label:cell.amountLabel];
         
         return cell;
     }
-    else {
+    else if(indexPath.row == 12){
         
         TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
         
         double totalBalance = [self calculateTotalYearBalance];
 
-        //TO-DO replace with balance from monthly report
-        if(totalBalance == 0) {
-            totalCell.totalBalanceLabel.textColor = [UIColor blackColor];
-        }
-        else if( totalBalance < 0) {
-            totalCell.totalBalanceLabel.textColor = [UIColor redColor];
-        }
-        else {
-            UIColor *color = [UIColor greenColor];
-        
-            totalCell.totalBalanceLabel.textColor = [self darkerColorForColor:color];
-        }
-        
         totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", totalBalance]];
+        
+        [self setLabelColor:totalBalance label:totalCell.totalBalanceLabel];
+        
+        totalCell.totalTextLabel.text = [[NSString stringWithFormat:@"%i",self.yearSelected] stringByAppendingString:@" Balance:"];
         
         return  totalCell;
     }
+    else {
+        TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+        
+        double totalBalance = [self currentBalance];
+        
+        totalCell.totalBalanceLabel.text =  [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%.02f", totalBalance]];
+        
+        [self setLabelColor:totalBalance label:totalCell.totalBalanceLabel];
+        
+        totalCell.totalTextLabel.text = @"Current Balance:";
+        
+        return  totalCell;
+    }
+}
+
+-(double)currentBalance {
+    
+    double currenBalance = 0;
+    
+    currenBalance += [[IncomeCollection sharedCollection]currentIncomesBalance];
+    currenBalance += [[ExpensesCollection sharedCollection]currentExpensesBalance];
+    
+    return currenBalance;
+}
+
+-(double)calculateMonthBalanceForMonthNum:(int)monthNumber {
+    
+    double monthTotal = 0;
+    
+    MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]]objectForKey:[NSNumber numberWithInt:monthNumber]];
+    
+    if(monthReport) {
+        monthTotal += [monthReport monthTotalIncomesAndExpensesBalance];
+    }
+    
+    return monthTotal;
 }
 
 -(double)calculateTotalYearBalance {
@@ -257,6 +294,21 @@
     }
     
     return totalBalance;
+}
+
+-(void)setLabelColor:(double)amount label:(UILabel*)label {
+    
+    if(amount > 0) {
+        
+        label.textColor = [self darkerColorForColor:[UIColor greenColor]];
+    }
+    else if(amount < 0) {
+        
+        label.textColor = [UIColor redColor];
+    }
+    else {
+        label.textColor = [UIColor blackColor];
+    }
 }
 
 //Took this from online
@@ -290,7 +342,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
     //Do not allow to select the last row which is the balance
-    if(indexPath.row == 12) {
+    if(indexPath.row >= 12) {
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
         return;
     }

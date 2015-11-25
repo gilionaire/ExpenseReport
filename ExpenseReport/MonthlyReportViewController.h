@@ -20,6 +20,7 @@
 @property (nonatomic, retain)MonthReport *monthReport;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalMonthltyBalanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentBalanceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addNewIncomeButton;
 @property (weak, nonatomic) IBOutlet UIButton *addNewExpenseButton;
 

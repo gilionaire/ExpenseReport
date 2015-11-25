@@ -17,16 +17,6 @@
 
 @implementation SourceTypeTableViewController
 
-//-(instancetype)init {
-//    
-//    self = [super initWithStyle:UITableViewStylePlain];
-//    
-//    
-//    
-//    return self;
-//}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

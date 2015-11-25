@@ -12,6 +12,8 @@
 #import "DetailViewController.h"
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
+#import "IncomeCollection.h"
+#import "ExpensesCollection.h"
 
 @interface MonthlyReportViewController ()
 
@@ -94,13 +96,26 @@
     self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",totalAmount]];
     
     [self setLabelColor:totalAmount label:self.totalMonthltyBalanceLabel];
-
+    
+    double currentBalance = [self currentBalance];
+    
+    self.currentBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",currentBalance]];
+    
+    [self setLabelColor:currentBalance label:self.currentBalanceLabel];
     
     [self.incomeTableView reloadData];
     [self.expenseTableView reloadData];
 
 }
 
+-(double)currentBalance {
+    double balance = 0;
+    
+    balance += [[IncomeCollection sharedCollection]currentIncomesBalance];
+    balance += [[ExpensesCollection sharedCollection]currentExpensesBalance];
+    
+    return balance;
+}
 
 - (UITableViewCell *) tableView:( UITableView *) tableView
           cellForRowAtIndexPath:( NSIndexPath *) indexPath

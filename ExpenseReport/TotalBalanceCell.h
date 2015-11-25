@@ -11,5 +11,6 @@
 @interface TotalBalanceCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *totalBalanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalTextLabel;
 
 @end

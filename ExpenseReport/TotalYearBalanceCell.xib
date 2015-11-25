@@ -24,7 +24,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="$ 0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muM-b9-Ajk">
                         <rect key="frame" x="172" y="11" width="140" height="21"/>
                         <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -43,6 +43,7 @@
             <animations/>
             <connections>
                 <outlet property="totalBalanceLabel" destination="muM-b9-Ajk" id="bhD-G8-yCA"/>
+                <outlet property="totalTextLabel" destination="r6G-n3-OIa" id="rbT-aL-jHA"/>
             </connections>
             <point key="canvasLocation" x="15" y="260"/>
         </tableViewCell>

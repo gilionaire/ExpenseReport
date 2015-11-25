@@ -12,5 +12,7 @@
 
 @property (nonatomic) int yearSelected;
 
+-(double)currentBalance;
+
 @end
 

@@ -107,4 +107,21 @@
     }
 }
 
+-(double)currentIncomesBalance {
+    
+    double balance = 0;
+    
+    NSDate *todaysDate = [[NSDate alloc]init];
+    
+    for(IncomeItem *income in self.allIncomes){
+        
+        if ([income.date compare:todaysDate] != NSOrderedDescending) {
+            
+            balance+= income.amount;
+        }
+    }
+    
+    return balance;
+}
+
 @end

@@ -107,4 +107,21 @@
     }
 }
 
+-(double)currentExpensesBalance {
+    
+    double balance = 0;
+    
+    NSDate *todaysDate = [[NSDate alloc]init];
+    
+    for(ExpenseItem *expense in self.allExpenses){
+        
+        if ([expense.date compare:todaysDate] != NSOrderedDescending) {
+            
+            balance+= expense.amount;
+        }
+    }
+    
+    return balance;
+}
+
 @end

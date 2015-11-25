@@ -22,4 +22,6 @@
 - (void) removeExpense:(ExpenseItem *)expense;
 - (BOOL) saveChanges;
 
+-(double)currentExpensesBalance;
+
 @end
