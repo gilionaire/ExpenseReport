@@ -9,6 +9,7 @@
 #import "MonthlyReportViewController.h"
 #import "SourceTypeTableViewController.h"
 #import "SourceOrTypeCell.h"
+#import "TotalBalanceCell.h"
 #import "DetailViewController.h"
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
@@ -33,11 +34,15 @@
     
     self.navigationItem.title = self.monthName;
     
-    UINib *nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
+    UINib *nib = [UINib nibWithNibName:@"TotalYearBalanceCell" bundle:nil];
+    
+    [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"TotalYearBalanceCell"];
+    [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"TotalYearBalanceCell"];
+    
+    nib = [UINib nibWithNibName:@"SourceOrTypeCell" bundle:nil];
     
     [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
-    
 }
 
 -(double)totalFromSet:(NSMutableArray*)dataSourceArray classType:(id)classType{
@@ -72,13 +77,13 @@
     if([tableView isEqual:self.incomeTableView]){
         
         //This should be replace with the income array
-        return self.incomeSource.count;
+        return self.incomeSource.count + 1;
     }
     //Expense Table View
     else {
         
         //This should be replace with the expense array
-        return self.expenseType.count;
+        return self.expenseType.count + 1;
     }
 }
 
@@ -124,37 +129,70 @@
     
     if([tableView isEqual:self.incomeTableView]){
         
-        NSString *incomeKey = [self.incomeKeys objectAtIndex:indexPath.row];
+        if(indexPath.row < self.incomeSource.count) {
+            
+            NSString *incomeKey = [self.incomeKeys objectAtIndex:indexPath.row];
         
-        cell.sourceOrTypeLabel.text = incomeKey;
+            cell.sourceOrTypeLabel.text = incomeKey;
                               
-        NSString *amountText = @"$ ";
+            NSString *amountText = @"$ ";
         
-        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
+            NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
         
-        double amount = [self totalFromSet:incomes classType:[IncomeItem class]];
+            double amount = [self totalFromSet:incomes classType:[IncomeItem class]];
         
-        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
+            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
         
-        cell.amountLabel.text = amountText;
+            cell.amountLabel.text = amountText;
         
-        [self setLabelColor:amount label:cell.amountLabel];
+            [self setLabelColor:amount label:cell.amountLabel];
+        }
+        else {
+            TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+            
+            totalCell.totalTextLabel.text = @"Total Income:";
+            
+            double totalIncomeAmount = self.monthReport.monthTotalIncomesBalance;
+            
+            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.02f", totalIncomeAmount]];
+            
+            [self setLabelColor:totalIncomeAmount label:totalCell.totalBalanceLabel];
+            
+            return totalCell;
+        }
     }
     else {
         
-        cell.sourceOrTypeLabel.text = [self.expenseKeys objectAtIndex:indexPath.row];
+        if(indexPath.row < self.expenseType.count) {
+            
+            cell.sourceOrTypeLabel.text = [self.expenseKeys objectAtIndex:indexPath.row];
         
-        NSString *amountText = @"$ ";
+            NSString *amountText = @"$ ";
         
-        NSMutableArray*expenses = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
+            NSMutableArray*expenses = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
         
-        double amount = [self totalFromSet:expenses classType:[ExpenseItem class]];
+            double amount = [self totalFromSet:expenses classType:[ExpenseItem class]];
         
-        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
+            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
         
-        cell.amountLabel.text = amountText;
+            cell.amountLabel.text = amountText;
         
-        [self setLabelColor:amount label:cell.amountLabel];
+            [self setLabelColor:amount label:cell.amountLabel];
+            
+        }
+        else {
+            TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
+            
+            totalCell.totalTextLabel.text = @"Total Expense:";
+            
+            double totalExpenseAmount = self.monthReport.monthTotalExpensesBalance;
+            
+            totalCell.totalBalanceLabel.text = [NSString stringWithFormat:@"%0.02f", totalExpenseAmount];
+            
+            [self setLabelColor:totalExpenseAmount label:totalCell.totalBalanceLabel];
+            
+            return totalCell;
+        }
     }
     
     return cell;
@@ -192,6 +230,11 @@
     //Income tablte view selection
     if([tableView isEqual:self.incomeTableView]) {
         
+        if(indexPath.row >= self.incomeSource.count) {
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            return;
+        }
+        
         SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
         
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
@@ -205,6 +248,12 @@
     }
     //Expense table view selection
     else {
+        
+        if(indexPath.row >= self.expenseType.count) {
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            return;
+        }
+        
         SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
         
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array

@@ -16,5 +16,7 @@
 @property (nonatomic) int yearNum;
 
 -(double)monthTotalIncomesAndExpensesBalance;
+-(double)monthTotalIncomesBalance;
+-(double)monthTotalExpensesBalance;
 
 @end

@@ -16,6 +16,15 @@
     
     double total = 0;
     
+    total += [self monthTotalIncomesBalance];
+    total += [self monthTotalExpensesBalance];
+    
+    return total;
+}
+
+-(double)monthTotalIncomesBalance {
+    double total = 0;
+    
     //Get the array of all income sources
     NSArray* incomeSourcesSet = [self.incomes allValues];
     
@@ -27,6 +36,13 @@
             total+= income.amount;
         }
     }
+    
+    return total;
+}
+
+-(double)monthTotalExpensesBalance {
+    
+    double total = 0;
     
     //Get the array of all expense types
     NSArray* expensesTypeSet = [self.expenses allValues];
