@@ -14,11 +14,17 @@
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
 #import "SourceOrTypeCell.h"
+#import "AppDelegate.h"
 
 @interface MainScreenViewController ()
 
 @property (nonatomic)NSArray *months;
 @property (nonatomic, retain)NSMutableDictionary *yearDictoinary;
+
+@property (nonatomic, strong)NSMutableDictionary *expenseTypeCount;
+@property (nonatomic, strong)NSMutableDictionary *expenseAmountCount;
+@property (nonatomic, strong)NSMutableDictionary *incomeSourceCount;
+@property (nonatomic, strong)NSMutableDictionary *incomeAmountCount;
 
 @end
 
@@ -62,7 +68,35 @@
     for(int indexIncomes = 0;  indexIncomes < incomes.count; indexIncomes++) {
         
         IncomeItem *income = incomes[indexIncomes];
+        
+        //Update the counters for the defaults
+        NSNumber *sourcesCount = [self.incomeSourceCount objectForKey:income.source];
+        
+        if(!sourcesCount) {
+            sourcesCount = [[NSNumber alloc]initWithInt:0];
+        }
+        
+        int count = [sourcesCount intValue];
+        count ++;
+        
+        sourcesCount = [NSNumber numberWithInt:count];
+        
+        [self.incomeSourceCount setObject:sourcesCount forKey:income.source];
+        
+        NSNumber *amountCount = [self.incomeAmountCount objectForKey:[NSNumber numberWithInt:income.amount]];
+        
+        if(!amountCount) {
+            amountCount = [[NSNumber alloc]initWithInt:0];
+        }
+        
+        count = [amountCount intValue];
+        count ++;
+        
+        amountCount = [NSNumber numberWithInt:count];
+        
+        [self.incomeAmountCount setObject:amountCount forKey:[NSNumber numberWithDouble:income.amount]];
     
+        //Populate dictionary with proper data base on keys
         int monthNum = [[monthFormatter stringFromDate:income.date]intValue];
         int yearNum = [[yearFormatter stringFromDate:income.date]intValue];
         
@@ -109,6 +143,40 @@
         
         ExpenseItem *expense = expenses[indexExpenses];
         
+        //Update the counters for the defaults
+        NSNumber *typeCount = [self.expenseTypeCount objectForKey:expense.type];
+        
+        if(!typeCount) {
+            typeCount = [[NSNumber alloc]initWithInt:0];
+        }
+        
+        int count = [typeCount intValue];
+        count ++;
+        
+        typeCount = [NSNumber numberWithInt:count];
+        
+        [self.expenseTypeCount setObject:typeCount forKey:expense.type];
+        
+        double expenseAmount = expense.amount;
+        
+        if(expenseAmount < 0){
+            expenseAmount *= -1;
+        }
+        
+        NSNumber *amountCount = [self.expenseAmountCount objectForKey:[NSNumber numberWithDouble:expenseAmount]];
+        
+        if(!amountCount) {
+            amountCount = [[NSNumber alloc]initWithInt:0];
+        }
+        
+        count = [amountCount intValue];
+        count ++;
+        
+        amountCount = [NSNumber numberWithInt:count];
+        
+        [self.expenseAmountCount setObject:amountCount forKey:[NSNumber numberWithDouble:expenseAmount]];
+        
+        //Populate dictionary with proper data
         int monthNum = [[monthFormatter stringFromDate:expense.date]intValue];
         int yearNum = [[yearFormatter stringFromDate:expense.date]intValue];
         
@@ -328,18 +396,47 @@
  
     [self.navigationController setToolbarHidden:NO];
     
-    [self.tableView reloadData];
-    //TO-DO the settings button
-    //Do the settings bundle first
+    self.expenseTypeCount = [[NSMutableDictionary alloc]init];
+    self.expenseAmountCount = [[NSMutableDictionary alloc]init];
+    self.incomeSourceCount = [[NSMutableDictionary alloc]init];
+    self.incomeAmountCount = [[NSMutableDictionary alloc]init];
     
     [self populateYearDicitonary];
     
     [self updateSettingsDefaults];
+    
+    [self.tableView reloadData];
 }
 
 //This will update the settings defautls with the most used ones
 -(void)updateSettingsDefaults {
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setObject:[[self.incomeSourceCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeSourceCount allValues]]] forKey:DefaultIncomeSourcePrefsKey];
+    [defaults setObject:[[self.incomeAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeAmountCount allValues]]] forKey:DefaultIncomeAmountPrefsKey];
+    [defaults setObject:[[self.expenseTypeCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseTypeCount allValues]]] forKey:DefaulExpenseTypePrefsKey];
+    [defaults setObject:[[self.expenseAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseAmountCount allValues]]] forKey:DefaultExpenseAmountPrefsKey];
+    
+}
+
+-(int)getIndexOfHighestCount:(NSArray*)dataArray {
+    int sourceIndex = 0;
+    int prevValue = 0;
+    
+    for(int index = 0; index < dataArray.count;index++) {
+        if(index == 0) {
+            prevValue = [dataArray[index] intValue];
+        }
+        else{
+            if(prevValue < [dataArray[index] intValue]) {
+                sourceIndex = index;
+                prevValue = [dataArray[index] intValue];
+            }
+        }
+    }
+    
+    return sourceIndex;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

@@ -21,9 +21,6 @@
 @property (nonatomic,retain)NSMutableDictionary *expenseType;
 @property (nonatomic,retain)NSMutableDictionary *incomeSource;
 
-@property (nonatomic,copy)NSArray *expenseKeys;
-@property (nonatomic,copy)NSArray *incomeKeys;
-
 @end
 
 @implementation MonthlyReportViewController
@@ -92,9 +89,6 @@
     self.expenseType = self.monthReport.expenses;
     self.incomeSource = self.monthReport.incomes;
     
-    self.expenseKeys = [self.expenseType allKeys];
-    self.incomeKeys = [self.incomeSource allKeys];
-    
     double totalAmount = self.monthReport.monthTotalIncomesAndExpensesBalance;
     
     self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",totalAmount]];
@@ -131,7 +125,9 @@
         
         if(indexPath.row < self.incomeSource.count) {
             
-            NSString *incomeKey = [self.incomeKeys objectAtIndex:indexPath.row];
+            NSArray *incomeKeys = [self.incomeSource allKeys];
+            
+            NSString *incomeKey = [incomeKeys objectAtIndex:indexPath.row];
         
             cell.sourceOrTypeLabel.text = incomeKey;
                               
@@ -141,7 +137,7 @@
         
             double amount = [self totalFromSet:incomes classType:[IncomeItem class]];
         
-            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
+            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.2f", amount]];
         
             cell.amountLabel.text = amountText;
         
@@ -154,7 +150,7 @@
             
             double totalIncomeAmount = self.monthReport.monthTotalIncomesBalance;
             
-            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.02f", totalIncomeAmount]];
+            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f", totalIncomeAmount]];
             
             [self setLabelColor:totalIncomeAmount label:totalCell.totalBalanceLabel];
             
@@ -165,15 +161,17 @@
         
         if(indexPath.row < self.expenseType.count) {
             
-            cell.sourceOrTypeLabel.text = [self.expenseKeys objectAtIndex:indexPath.row];
+            NSArray *expenseKeys = [self.expenseType allKeys];
+            
+            cell.sourceOrTypeLabel.text = [expenseKeys objectAtIndex:indexPath.row];
         
             NSString *amountText = @"$ ";
         
-            NSMutableArray*expenses = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
+            NSMutableArray*expenses = [self.expenseType objectForKey:expenseKeys[indexPath.row]];
         
             double amount = [self totalFromSet:expenses classType:[ExpenseItem class]];
         
-            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
+            amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.2f", amount]];
         
             cell.amountLabel.text = amountText;
         
@@ -187,7 +185,7 @@
             
             double totalExpenseAmount = self.monthReport.monthTotalExpensesBalance;
             
-            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.02f", totalExpenseAmount]];
+            totalCell.totalBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f", totalExpenseAmount]];
             
             [self setLabelColor:totalExpenseAmount label:totalCell.totalBalanceLabel];
             
@@ -237,9 +235,11 @@
         
         SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
         
+        NSArray *incomeKeys = [self.incomeSource allKeys];
+        
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
-        sttvc.expensesOrIncomeArray = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
-        sttvc.sourceOrTypeTitle = self.incomeKeys[indexPath.row];
+        sttvc.expensesOrIncomeArray = [self.incomeSource objectForKey:incomeKeys[indexPath.row]];
+        sttvc.sourceOrTypeTitle = incomeKeys[indexPath.row];
         sttvc.isIncome = YES;
         sttvc.monthReport = self.monthReport;
         
@@ -256,9 +256,11 @@
         
         SourceTypeTableViewController *sttvc = [[SourceTypeTableViewController alloc]init];
         
+        NSArray *expenseKeys = [self.expenseType allKeys];
+        
         //Set the nsMutable array of the sourcetype table view controller to be equal to the incom array
-        sttvc.expensesOrIncomeArray = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
-        sttvc.sourceOrTypeTitle = self.expenseKeys[indexPath.row];
+        sttvc.expensesOrIncomeArray = [self.expenseType objectForKey:expenseKeys[indexPath.row]];
+        sttvc.sourceOrTypeTitle = expenseKeys[indexPath.row];
         sttvc.isIncome = NO;
         sttvc.monthReport = self.monthReport;
         
