@@ -12,10 +12,9 @@
 
 @property (nonatomic, retain) NSMutableDictionary * expenses;
 @property (nonatomic, retain) NSMutableDictionary * incomes;
-@property (nonatomic) double balance;
 @property (nonatomic) int monthNum;
 @property (nonatomic) int yearNum;
 
-
+-(double)monthTotalIncomesAndExpensesBalance;
 
 @end

@@ -31,73 +31,82 @@
     
 }
 
-//Calculate the total monthly balance
--(NSNumber*)calculateTotalMonthlyBalance {
+////Calculate the total monthly balance
+//-(NSNumber*)calculateTotalMonthlyBalance {
+//    
+//    double totalAmount = 0;
+//    
+//    for(NSString* incomeKey in self.incomeSource){
+//        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
+//        totalAmount += [[self totalFromSet:incomes] doubleValue];
+//    }
+//    
+//    for(NSString* expenseKey in self.expenseType){
+//        NSMutableArray *expenses = [self.expenseType objectForKey:expenseKey];
+//        totalAmount += [[self totalFromSet:expenses] doubleValue];
+//    }
+//    
+//    return [NSNumber numberWithDouble:totalAmount];
+//}
+
+-(double)totalFromSet:(NSMutableArray*)dataSourceArray classType:(id)classType{
     
     double totalAmount = 0;
     
-    for(NSString* incomeKey in self.incomeSource){
-        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
-        totalAmount += [[self totalFromSet:incomes] doubleValue];
+    if([classType isKindOfClass:[IncomeItem class]]){
+        
+        for(IncomeItem *income in dataSourceArray){
+            totalAmount += income.amount;
+        }
+    }
+    else {
+    
+        for(ExpenseItem *expense in dataSourceArray) {
+            totalAmount += expense.amount;
+        }
     }
     
-    for(NSString* expenseKey in self.expenseType){
-        NSMutableArray *expenses = [self.expenseType objectForKey:expenseKey];
-        totalAmount += [[self totalFromSet:expenses] doubleValue];
-    }
-    
-    return [NSNumber numberWithDouble:totalAmount];
+    return totalAmount;
 }
 
--(NSNumber*)totalFromSet:(NSMutableArray*)dataSourceArray {
-    double totalAmount = 0;
-    
-    //For now is NSNumber replace with object
-    for(NSNumber *amount in dataSourceArray){
-        totalAmount += [amount doubleValue];
-    }
-    
-    return [NSNumber numberWithDouble:totalAmount];
-}
-
--(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSArray*)dataSource classType:(id)classType {
-    
-    //replace number 2 with the data source array
-    for(int dataIndex = 0; dataIndex < dataSource.count; dataIndex++){
-        
-        NSString *key;
-        
-        //Is income type
-        if([classType isKindOfClass:[IncomeItem class]]) {
-         
-            IncomeItem *income = dataSource[dataIndex];
-            key = income.source;
-        }
-        else {
-            
-            ExpenseItem *expense = dataSource[dataIndex];
-        
-            key = expense.type;
-        }
-       
-        //Replace the string with the datasource objects type or source
-        if([dictionaryToPopulate objectForKey:key]){
-            
-            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:key];
-            
-            [arrayFromDictionary addObject:dataSource[dataIndex]];
-            
-            [dictionaryToPopulate setObject:arrayFromDictionary forKey:key];
-        }
-        else{
-            
-            //replace string and int with dataSource values
-            NSMutableArray *otherOne = [[NSMutableArray alloc]init];
-            [otherOne addObject:dataSource[dataIndex]];
-            [dictionaryToPopulate setObject:otherOne forKey:key];
-        }
-    }
-}
+//-(void)populateDictionaries:(NSMutableDictionary*)dictionaryToPopulate dataSet:(NSArray*)dataSource classType:(id)classType {
+//    
+//    //replace number 2 with the data source array
+//    for(int dataIndex = 0; dataIndex < dataSource.count; dataIndex++){
+//        
+//        NSString *key;
+//        
+//        //Is income type
+//        if([classType isKindOfClass:[IncomeItem class]]) {
+//         
+//            IncomeItem *income = dataSource[dataIndex];
+//            key = income.source;
+//        }
+//        else {
+//            
+//            ExpenseItem *expense = dataSource[dataIndex];
+//        
+//            key = expense.type;
+//        }
+//       
+//        //Replace the string with the datasource objects type or source
+//        if([dictionaryToPopulate objectForKey:key]){
+//            
+//            NSMutableArray *arrayFromDictionary = [dictionaryToPopulate objectForKey:key];
+//            
+//            [arrayFromDictionary addObject:dataSource[dataIndex]];
+//            
+//            [dictionaryToPopulate setObject:arrayFromDictionary forKey:key];
+//        }
+//        else{
+//            
+//            //replace string and int with dataSource values
+//            NSMutableArray *otherOne = [[NSMutableArray alloc]init];
+//            [otherOne addObject:dataSource[dataIndex]];
+//            [dictionaryToPopulate setObject:otherOne forKey:key];
+//        }
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -129,9 +138,6 @@
     self.expenseType = self.monthReport.expenses;
     self.incomeSource = self.monthReport.incomes;
     
-    [self populateDictionaries:self.incomeSource dataSet:[self.monthReport.incomes allValues]classType:[IncomeItem class]];
-    [self populateDictionaries:self.expenseType dataSet:[self.monthReport.expenses allValues] classType:[ExpenseItem class]];
-    
     self.expenseKeys = [self.expenseType allKeys];
     self.incomeKeys = [self.incomeSource allKeys];
     
@@ -140,9 +146,9 @@
     [self.incomeTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     [self.expenseTableView registerNib:nib forCellReuseIdentifier:@"SourceOrTypeCell"];
     
-    NSNumber *totalAmount = [self calculateTotalMonthlyBalance];
+    double totalAmount = self.monthReport.monthTotalIncomesAndExpensesBalance;
     
-    self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",[totalAmount doubleValue]]];
+    self.totalMonthltyBalanceLabel.text = [@"$ " stringByAppendingString:[NSString stringWithFormat:@"%0.2f",totalAmount]];
     
     [self setLabelColor:totalAmount label:self.totalMonthltyBalanceLabel];
 
@@ -161,15 +167,17 @@
     
     if([tableView isEqual:self.incomeTableView]){
         
-        cell.sourceOrTypeLabel.text = [self.incomeKeys objectAtIndex:indexPath.row];
+        NSString *incomeKey = [self.incomeKeys objectAtIndex:indexPath.row];
+        
+        cell.sourceOrTypeLabel.text = incomeKey;
                               
         NSString *amountText = @"$ ";
         
-        NSMutableArray *incomes = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
+        NSMutableArray *incomes = [self.incomeSource objectForKey:incomeKey];
         
-        NSNumber *amount = [self totalFromSet:incomes];
+        double amount = [self totalFromSet:incomes classType:[IncomeItem class]];
         
-        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
+        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
         
         cell.amountLabel.text = amountText;
         
@@ -183,9 +191,9 @@
         
         NSMutableArray*expenses = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
         
-        NSNumber *amount = [self totalFromSet:expenses];
+        double amount = [self totalFromSet:expenses classType:[ExpenseItem class]];
         
-        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", [amount doubleValue]]];
+        amountText = [amountText stringByAppendingString:[NSString stringWithFormat:@"%.02f", amount]];
         
         cell.amountLabel.text = amountText;
         
@@ -195,13 +203,13 @@
     return cell;
 }
 
--(void)setLabelColor:(NSNumber*)amount label:(UILabel*)label {
+-(void)setLabelColor:(double)amount label:(UILabel*)label {
     
-    if([amount doubleValue] > 0) {
+    if(amount > 0) {
         
         label.textColor = [self darkerColorForColor:[UIColor greenColor]];
     }
-    else if([amount doubleValue] < 0) {
+    else if(amount < 0) {
         
         label.textColor = [UIColor redColor];
     }

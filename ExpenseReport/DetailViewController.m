@@ -66,8 +66,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     
-    
-    
     //if is a new item
     if(self.isNew) {
         
@@ -79,30 +77,29 @@
         }
     }
     else {
-        
-       
-        
+
         if(self.isIncome) {
             
             IncomeItem *item = self.incomeItem;
             item.source = self.sourceOrTypeTextField.text;
             item.date = self.datePicker.date;
-//            double amount;
-//            
-//            if([[NSScanner scannerWithString:self.amountTextField.text]scanDouble:&amount]){
-//                
-//                item.amount = amount;
-//            }
+
             item.amount = [self.amountTextField.text doubleValue];
             
-            [self.monthReport.incomes setObject:item forKey:item.source];
+            NSMutableArray* incomes = [self.monthReport.incomes objectForKey:item.source];
+            
+            if(!incomes) {
+                incomes = [[NSMutableArray alloc]init];
+                [self.monthReport.incomes setObject:incomes forKey:item.source];
+            }
+            
+            [incomes addObject:item];
         }
         else {
             
         }
     }
-    //Is this necessary?
-    //[self.view endEditing:YES];
+    
     
     [super viewWillDisappear:YES];
     
@@ -126,6 +123,8 @@
     else {
         
         self.isNew = false;
+        
+        
         
         [self.navigationController popViewControllerAnimated:YES];
     }

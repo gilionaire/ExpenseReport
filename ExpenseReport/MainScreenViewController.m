@@ -52,6 +52,8 @@
 
 -(void)populateYearDicitonary {
     
+    self.yearDictoinary = [[NSMutableDictionary alloc]init];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"MM"];
     
@@ -68,6 +70,7 @@
         if(!monthReport) {
             
             monthReport = [[MonthReport alloc]init];
+            monthReport.incomes = [[NSMutableDictionary alloc]init];
         }
         
         NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
@@ -76,9 +79,20 @@
             
             monthDictionary = [[NSMutableDictionary alloc]init];
         }
-
+        
+        monthReport.monthNum = monthNum;
+        monthReport.yearNum = self.yearSelected;
+        
         //Add Income to month report
-        [monthReport.incomes setObject:income forKey:income.source];
+        NSMutableArray* monthReportIncomes = [monthReport.incomes objectForKey:income.source];
+        
+        if(!monthReportIncomes) {
+            monthReportIncomes = [[NSMutableArray alloc]init];
+        }
+        
+        [monthReportIncomes addObject:income];
+        
+        [monthReport.incomes setObject:monthReportIncomes forKey:income.source];
         
         //Add month report to monthdictionary
         [monthDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
@@ -100,9 +114,13 @@
         if(!monthReport) {
             
             monthReport = [[MonthReport alloc]init];
+            monthReport.expenses = [[NSMutableDictionary alloc]init];
         }
         
         NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+        
+        monthReport.monthNum = monthNum;
+        monthReport.yearNum = self.yearSelected;
         
         if(!monthDictionary) {
             
@@ -187,7 +205,7 @@
         
         TotalBalanceCell *totalCell = [tableView dequeueReusableCellWithIdentifier:@"TotalYearBalanceCell" forIndexPath:indexPath];
         
-        double totalBalance = [[self calculateTotalYearBalance]doubleValue];
+        double totalBalance = [self calculateTotalYearBalance];
 
         //TO-DO replace with balance from monthly report
         if(totalBalance == 0) {
@@ -208,22 +226,21 @@
     }
 }
 
--(NSNumber*)calculateTotalYearBalance {
+-(double)calculateTotalYearBalance {
     
     double totalBalance = 0;
     
-    self.yearDictoinary = [[NSMutableDictionary alloc]init];
-    
-    NSArray* monthReports = [self.yearDictoinary allValues];
+    NSArray* monthReports = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]] allValues];
     
     if(monthReports){
     
         for(MonthReport* monthReport in monthReports) {
-            totalBalance += monthReport.balance;
+            
+            totalBalance += [monthReport monthTotalIncomesAndExpensesBalance];
         }
     }
     
-    return [NSNumber numberWithDouble:totalBalance];
+    return totalBalance;
 }
 
 //Took this from online
