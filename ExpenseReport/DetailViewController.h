@@ -21,7 +21,9 @@
 @property (nonatomic, retain)ExpenseItem *expenseItem;
 @property (nonatomic, retain)IncomeItem *incomeItem;
 
+@property (nonatomic, copy)NSString *sourceOrTypeTile;
+
 //If have time apply the pop view like the student
-@property (nonatomic, copy)void (^dismissBlock)(void);
+//@property (nonatomic, copy)void (^dismissBlock)(void);
 
 @end

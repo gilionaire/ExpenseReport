@@ -80,7 +80,6 @@
         //This should be replace with the expense array
         return self.expenseType.count;
     }
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -199,6 +198,7 @@
         sttvc.expensesOrIncomeArray = [self.incomeSource objectForKey:self.incomeKeys[indexPath.row]];
         sttvc.sourceOrTypeTitle = self.incomeKeys[indexPath.row];
         sttvc.isIncome = YES;
+        sttvc.monthReport = self.monthReport;
         
         [self.navigationController pushViewController:sttvc animated:YES];
         
@@ -211,6 +211,7 @@
         sttvc.expensesOrIncomeArray = [self.expenseType objectForKey:self.expenseKeys[indexPath.row]];
         sttvc.sourceOrTypeTitle = self.expenseKeys[indexPath.row];
         sttvc.isIncome = NO;
+        sttvc.monthReport = self.monthReport;
         
         [self.navigationController pushViewController:sttvc animated:YES];
     }
@@ -225,10 +226,6 @@
     dvc.isIncome = YES;
     dvc.monthReport = self.monthReport;
     
-    dvc.dismissBlock = ^{
-        [self.incomeTableView reloadData];
-    };
-    
     [self.navigationController pushViewController:dvc animated:YES];
     
 }
@@ -241,10 +238,6 @@
     dvc.isNew = YES;
     dvc.isIncome = NO;
     dvc.monthReport = self.monthReport;
-    
-    dvc.dismissBlock = ^{
-        [self.expenseTableView reloadData];
-    };
     
     [self.navigationController pushViewController:dvc animated:YES];
     

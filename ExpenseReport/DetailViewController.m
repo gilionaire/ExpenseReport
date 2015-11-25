@@ -41,6 +41,24 @@
         else {
             self.expenseItem = [[ExpensesCollection sharedCollection]createExpense];
         }
+        
+        if(self.sourceOrTypeTile) {
+            self.sourceOrTypeTextField.text = self.sourceOrTypeTile;
+        }
+    }
+    else {
+        if(self.isIncome) {
+            self.sourceOrTypeTextField.text = self.incomeItem.source;
+            self.datePicker.date = self.incomeItem.date;
+            self.amountTextField.text = [NSString stringWithFormat:@"%0.2f", self.incomeItem.amount];
+            self.commentsTextBox.text = self.incomeItem.comments;
+        }
+        else {
+            self.sourceOrTypeTextField.text = self.expenseItem.type;
+            self.datePicker.date = self.expenseItem.date;
+            self.amountTextField.text = [NSString stringWithFormat:@"%0.2f", self.expenseItem.amount];
+            self.commentsTextBox.text = self.expenseItem.comments;
+        }
     }
 }
 
@@ -83,21 +101,24 @@
             IncomeItem *item = self.incomeItem;
             item.source = self.sourceOrTypeTextField.text;
             item.date = self.datePicker.date;
-
             item.amount = [self.amountTextField.text doubleValue];
+            item.comments = self.commentsTextBox.text;
             
-            if(!self.monthReport.incomes){
-                self.monthReport.incomes = [[NSMutableDictionary alloc]init];
+            if(self.monthReport) {
+                
+                if(!self.monthReport.incomes){
+                    self.monthReport.incomes = [[NSMutableDictionary alloc]init];
+                }
+            
+                NSMutableArray* incomes = [self.monthReport.incomes objectForKey:item.source];
+            
+                if(!incomes) {
+                    incomes = [[NSMutableArray alloc]init];
+                    [self.monthReport.incomes setObject:incomes forKey:item.source];
+                }
+            
+                [incomes addObject:item];
             }
-            
-            NSMutableArray* incomes = [self.monthReport.incomes objectForKey:item.source];
-            
-            if(!incomes) {
-                incomes = [[NSMutableArray alloc]init];
-                [self.monthReport.incomes setObject:incomes forKey:item.source];
-            }
-            
-            [incomes addObject:item];
         }
         else {
             
@@ -105,6 +126,7 @@
             
             item.type = self.sourceOrTypeTextField.text;
             item.date = self.datePicker.date;
+            item.comments = self.commentsTextBox.text;
             
             double amount = [self.amountTextField.text doubleValue];
             
@@ -114,18 +136,20 @@
             
             item.amount = amount;
             
-            if(!self.monthReport.expenses){
-                self.monthReport.expenses = [[NSMutableDictionary alloc]init];
+            if(self.monthReport) {
+                if(!self.monthReport.expenses){
+                    self.monthReport.expenses = [[NSMutableDictionary alloc]init];
+                }
+            
+                NSMutableArray* expenses = [self.monthReport.expenses objectForKey:item.type];
+            
+                if(!expenses) {
+                    expenses = [[NSMutableArray alloc]init];
+                    [self.monthReport.expenses setObject:expenses forKey:item.type];
+                }
+            
+                [expenses addObject:item];
             }
-            
-            NSMutableArray* expenses = [self.monthReport.expenses objectForKey:item.type];
-            
-            if(!expenses) {
-                expenses = [[NSMutableArray alloc]init];
-                [self.monthReport.expenses setObject:expenses forKey:item.type];
-            }
-            
-            [expenses addObject:item];
         }
     }
     
@@ -136,8 +160,13 @@
 
 -(IBAction)addNewIncomeOrExpense:(id)sender {
  
-    if([self.sourceOrTypeTextField.text isEqualToString:@""] && [self.amountTextField.text isEqualToString:@""]) {
+    if(![self.sourceOrTypeTextField.text isEqualToString:@""] && ![self.amountTextField.text isEqualToString:@""]) {
         
+        self.isNew = false;
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle: @"Missing Information" message:@"Enter complete information" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action){
@@ -147,12 +176,6 @@
         [alert addAction:ok];
         
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
-        
-        self.isNew = false;
-        
-        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

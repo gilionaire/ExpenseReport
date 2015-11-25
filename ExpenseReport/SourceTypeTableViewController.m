@@ -10,12 +10,42 @@
 #import "SourceOrTypeCell.h"
 #import "IncomeItem.h"
 #import "ExpenseItem.h"
+#import "ExpensesCollection.h"
+#import "IncomeCollection.h"
+#import "DetailViewController.h"
 
 @interface SourceTypeTableViewController ()
 
 @end
 
 @implementation SourceTypeTableViewController
+
+- (instancetype) init
+{
+    // Call the superclass's designated initializer
+    self = [super initWithStyle:UITableViewStylePlain];
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem)];
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    NSMutableArray *tools = [[NSMutableArray alloc]init];
+    
+    [tools addObject:flexibleSpace];
+    [tools addObject:addButton];
+    [tools addObject:flexibleSpace];
+    
+    [self setToolbarItems:tools];
+    
+    return self;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,8 +73,17 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)viewWillAppear:(BOOL)animated {
+-(void)addNewItem {
     
+    DetailViewController *dvc = [[DetailViewController alloc]init];
+    
+    dvc.isNew = YES;
+    dvc.isIncome = self.isIncome;
+    dvc.monthReport = self.monthReport;
+    
+    dvc.sourceOrTypeTile = self.sourceOrTypeTitle;
+    
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
@@ -85,6 +124,49 @@
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+ 
+    DetailViewController *dvc = [[DetailViewController alloc]init];
+    
+    dvc.isNew = NO;
+    dvc.isIncome = self.isIncome;
+    
+    if(self.isIncome) {
+        dvc.incomeItem = self.expensesOrIncomeArray[indexPath.row];
+    }
+    else {
+        dvc.expenseItem = self.expensesOrIncomeArray[indexPath.row];
+    }
+    
+    [self.navigationController pushViewController:dvc animated:YES];
+}
+
+- (void) tableView:( UITableView *) tableView
+commitEditingStyle:( UITableViewCellEditingStyle) editingStyle
+ forRowAtIndexPath:( NSIndexPath *) indexPath
+{
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        if(self.isIncome){
+            
+            IncomeItem *income = self.expensesOrIncomeArray[indexPath.row];
+            
+            [[IncomeCollection sharedCollection]removeIncome:income];
+        }
+        else {
+            ExpenseItem *expense = self.expensesOrIncomeArray[indexPath.row];
+            [[ExpensesCollection sharedCollection]removeExpense:expense];
+        }
+        
+        [self.expensesOrIncomeArray removeObjectAtIndex:indexPath.row];
+        
+        // Also remove that row from the table view with an animation
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 -(void)setLabelColor:(double)amount label:(UILabel*)label {

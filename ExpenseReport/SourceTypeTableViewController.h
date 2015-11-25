@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MonthReport.h"
 
 @interface SourceTypeTableViewController : UITableViewController <UINavigationControllerDelegate>
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, retain) NSMutableArray *expensesOrIncomeArray;
 @property (nonatomic, copy) NSString* sourceOrTypeTitle;
+@property (nonatomic, retain)MonthReport *monthReport;
 
 @property (nonatomic)BOOL isIncome;
 
