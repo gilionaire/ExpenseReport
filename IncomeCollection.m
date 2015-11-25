@@ -8,6 +8,7 @@
 
 #import "IncomeCollection.h"
 #import "IncomeItem.h"
+#import "AppDelegate.h"
 
 @implementation IncomeCollection
 
@@ -79,6 +80,12 @@
     IncomeItem *income = [NSEntityDescription insertNewObjectForEntityForName:@"IncomeItem"
                                                        inManagedObjectContext:self.context];
     [self.allIncomes addObject:income];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    income.source = [defaults objectForKey:DefaultIncomeSourcePrefsKey];
+    income.amount = [defaults doubleForKey:DefaultIncomeAmountPrefsKey];
+    
     return income;
 }
 

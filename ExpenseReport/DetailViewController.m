@@ -37,9 +37,21 @@
         
         if(self.isIncome) {
             self.incomeItem = [[IncomeCollection sharedCollection]createIncome];
+            
+            self.sourceOrTypeTextField.text = self.incomeItem.source;
+            self.amountTextField.text = [NSString stringWithFormat:@"%0.2f", self.incomeItem.amount];
         }
         else {
             self.expenseItem = [[ExpensesCollection sharedCollection]createExpense];
+            
+            self.sourceOrTypeTextField.text = self.expenseItem.type;
+            double amount = self.expenseItem.amount;
+            
+            if(amount < 0){
+                amount *= -1;
+            }
+            
+            self.amountTextField.text = [NSString stringWithFormat:@"%0.2f", amount];
         }
         
         if(self.sourceOrTypeTile) {
@@ -121,6 +133,12 @@
     [self.sourceOrTypeTextField resignFirstResponder];
     [self.amountTextField resignFirstResponder];
     [self.commentsTextBox resignFirstResponder];
+}
+
+//Dismiss when tap return
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated {

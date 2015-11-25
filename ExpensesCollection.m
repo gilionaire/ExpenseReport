@@ -8,6 +8,7 @@
 
 #import "ExpensesCollection.h"
 #import "ExpenseItem.h"
+#import "AppDelegate.h"
 
 @implementation ExpensesCollection
 
@@ -79,6 +80,12 @@
     ExpenseItem *expense = [NSEntityDescription insertNewObjectForEntityForName:@"ExpenseItem"
                                                          inManagedObjectContext:self.context];
     [self.allExpenses addObject:expense];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    expense.type = [defaults objectForKey:DefaulExpenseTypePrefsKey];
+    expense.amount = [defaults doubleForKey:DefaultExpenseAmountPrefsKey];
+    
     return expense;
 }
 

@@ -7,7 +7,6 @@
 //
 
 #import "MainScreenViewController.h"
-#import "AppDelegate.h"
 #import "TotalBalanceCell.h"
 #import "MonthlyReportViewController.h"
 #import "IncomeCollection.h"
@@ -334,6 +333,13 @@
     //Do the settings bundle first
     
     [self populateYearDicitonary];
+    
+    [self updateSettingsDefaults];
+}
+
+//This will update the settings defautls with the most used ones
+-(void)updateSettingsDefaults {
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

@@ -214,6 +214,19 @@ commitEditingStyle:( UITableViewCellEditingStyle) editingStyle
     }
 }
 
+//This disables the edit on the last row which contains the information
+- (BOOL)tableView:(UITableView * _Nonnull)tableView
+canEditRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath {
+    
+    NSUInteger totalObjects = self.expensesOrIncomeArray.count;
+    
+    if(totalObjects == indexPath.row){
+        return NO;
+    }
+    else
+        return YES;
+}
+
 -(void)setLabelColor:(double)amount label:(UILabel*)label {
     
     if(amount > 0) {
