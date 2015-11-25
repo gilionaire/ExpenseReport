@@ -86,6 +86,10 @@
 
             item.amount = [self.amountTextField.text doubleValue];
             
+            if(!self.monthReport.incomes){
+                self.monthReport.incomes = [[NSMutableDictionary alloc]init];
+            }
+            
             NSMutableArray* incomes = [self.monthReport.incomes objectForKey:item.source];
             
             if(!incomes) {
@@ -97,9 +101,33 @@
         }
         else {
             
+            ExpenseItem *item = self.expenseItem;
+            
+            item.type = self.sourceOrTypeTextField.text;
+            item.date = self.datePicker.date;
+            
+            double amount = [self.amountTextField.text doubleValue];
+            
+            if(amount > 0) {
+                amount *= -1;
+            }
+            
+            item.amount = amount;
+            
+            if(!self.monthReport.expenses){
+                self.monthReport.expenses = [[NSMutableDictionary alloc]init];
+            }
+            
+            NSMutableArray* expenses = [self.monthReport.expenses objectForKey:item.type];
+            
+            if(!expenses) {
+                expenses = [[NSMutableArray alloc]init];
+                [self.monthReport.expenses setObject:expenses forKey:item.type];
+            }
+            
+            [expenses addObject:item];
         }
     }
-    
     
     [super viewWillDisappear:YES];
     
@@ -123,8 +151,6 @@
     else {
         
         self.isNew = false;
-        
-        
         
         [self.navigationController popViewControllerAnimated:YES];
     }

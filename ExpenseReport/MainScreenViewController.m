@@ -54,8 +54,11 @@
     
     self.yearDictoinary = [[NSMutableDictionary alloc]init];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"MM"];
+    NSDateFormatter *monthFormatter = [[NSDateFormatter alloc]init];
+    [monthFormatter setDateFormat:@"MM"];
+    
+    NSDateFormatter *yearFormatter = [[NSDateFormatter alloc]init];
+    [yearFormatter setDateFormat:@"yyyy"];
     
     NSMutableArray *incomes = [[IncomeCollection sharedCollection]allIncomes];
     
@@ -63,25 +66,27 @@
         
         IncomeItem *income = incomes[indexIncomes];
     
-        int monthNum = [[dateFormatter stringFromDate:income.date]intValue];
+        int monthNum = [[monthFormatter stringFromDate:income.date]intValue];
+        int yearNum = [[yearFormatter stringFromDate:income.date]intValue];
         
-        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]] objectForKey:[NSNumber numberWithInt:monthNum]];
+        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:yearNum]] objectForKey:[NSNumber numberWithInt:monthNum]];
         
         if(!monthReport) {
-            
             monthReport = [[MonthReport alloc]init];
-            monthReport.incomes = [[NSMutableDictionary alloc]init];
         }
         
-        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
+        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:yearNum]];
         
         if(!monthDictionary) {
-            
             monthDictionary = [[NSMutableDictionary alloc]init];
         }
         
         monthReport.monthNum = monthNum;
-        monthReport.yearNum = self.yearSelected;
+        monthReport.yearNum = yearNum;
+        
+        if(!monthReport.incomes) {
+            monthReport.incomes = [[NSMutableDictionary alloc]init];
+        }
         
         //Add Income to month report
         NSMutableArray* monthReportIncomes = [monthReport.incomes objectForKey:income.source];
@@ -98,7 +103,7 @@
         [monthDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
         
         //Add month dictionary to year dictionary
-        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:self.yearSelected]];
+        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:yearNum]];
     }
 
     NSMutableArray *expenses = [[ExpensesCollection sharedCollection]allExpenses];
@@ -107,9 +112,10 @@
         
         ExpenseItem *expense = expenses[indexExpenses];
         
-        int monthNum = [[dateFormatter stringFromDate:expense.date]intValue];
+        int monthNum = [[monthFormatter stringFromDate:expense.date]intValue];
+        int yearNum = [[yearFormatter stringFromDate:expense.date]intValue];
         
-        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]] objectForKey:[NSNumber numberWithInt:monthNum]];
+        MonthReport *monthReport = [[self.yearDictoinary objectForKey:[NSNumber numberWithInt:yearNum]] objectForKey:[NSNumber numberWithInt:monthNum]];
         
         if(!monthReport) {
             
@@ -117,24 +123,34 @@
             monthReport.expenses = [[NSMutableDictionary alloc]init];
         }
         
-        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:self.yearSelected]];
-        
-        monthReport.monthNum = monthNum;
-        monthReport.yearNum = self.yearSelected;
+        NSMutableDictionary* monthDictionary = [self.yearDictoinary objectForKey:[NSNumber numberWithInt:yearNum]];
         
         if(!monthDictionary) {
-            
             monthDictionary = [[NSMutableDictionary alloc]init];
         }
         
-        //Add Income to month report
-        [monthReport.expenses setObject:expense forKey:expense.type];
+        monthReport.monthNum = monthNum;
+        monthReport.yearNum = yearNum;
+        
+        if(!monthReport.expenses) {
+            monthReport.expenses = [[NSMutableDictionary alloc]init];
+        }
+        
+        NSMutableArray *monthReportExpenses = [monthReport.expenses objectForKey:expense.type];
+        
+        if(!monthReportExpenses) {
+            monthReportExpenses = [[NSMutableArray alloc]init];
+        }
+        
+        [monthReportExpenses addObject:expense];
+    
+        [monthReport.expenses setObject:monthReportExpenses forKey:expense.type];
         
         //Add month report to monthdictionary
         [monthDictionary setObject:monthReport forKey:[NSNumber numberWithInt:monthNum]];
         
         //Add month dictionary to year dictionary
-        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:self.yearSelected]];
+        [self.yearDictoinary setObject:monthDictionary forKey:[NSNumber numberWithInt:yearNum]];
     }
 }
 
