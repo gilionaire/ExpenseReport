@@ -413,10 +413,17 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    [defaults setObject:[[self.incomeSourceCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeSourceCount allValues]]] forKey:DefaultIncomeSourcePrefsKey];
-    [defaults setObject:[[self.incomeAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeAmountCount allValues]]] forKey:DefaultIncomeAmountPrefsKey];
-    [defaults setObject:[[self.expenseTypeCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseTypeCount allValues]]] forKey:DefaulExpenseTypePrefsKey];
-    [defaults setObject:[[self.expenseAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseAmountCount allValues]]] forKey:DefaultExpenseAmountPrefsKey];
+    if([self.incomeSourceCount count]>0)
+        [defaults setObject:[[self.incomeSourceCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeSourceCount allValues]]] forKey:DefaultIncomeSourcePrefsKey];
+    
+    if([self.incomeAmountCount count]>0)
+        [defaults setObject:[[self.incomeAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.incomeAmountCount allValues]]] forKey:DefaultIncomeAmountPrefsKey];
+    
+    if([self.expenseTypeCount count]>0)
+        [defaults setObject:[[self.expenseTypeCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseTypeCount allValues]]] forKey:DefaulExpenseTypePrefsKey];
+    
+    if([self.expenseAmountCount count]>0)
+        [defaults setObject:[[self.expenseAmountCount allKeys] objectAtIndex:[self getIndexOfHighestCount:[self.expenseAmountCount allValues]]] forKey:DefaultExpenseAmountPrefsKey];
     
 }
 
